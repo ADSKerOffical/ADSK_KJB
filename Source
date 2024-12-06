@@ -155,6 +155,96 @@ end
    end    
 })
 
+Tab:AddButton({
+ Name = "Invisible all",
+ Callback = function()
+for _, player in ipairs(game.Players:GetPlayers()) do
+local args = {
+    [1] = "SetTranspancyyyyyy",
+    [2] = workspace:WaitForChild(player.Name),
+    [3] = true
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+end        
+   end    
+})
+
+Tab:AddButton({
+ Name = "Visible all",
+ Callback = function()
+for _, player in ipairs(game.Players:GetPlayers()) do
+local args = {
+    [1] = "SetTranspancyyyyyy",
+    [2] = workspace:WaitForChild(player.Name),
+    [3] = false
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+end
+   end    
+})
+
+Tab:AddButton({
+ Name = "Mega punish all",
+ Callback = function()
+for _, player in ipairs(game.Players:GetPlayers()) do
+  if player ~= game.Players.LocalPlayer then
+local args = {
+    [1] = "Force",
+    [2] = workspace:WaitForChild(player.Name):WaitForChild("HumanoidRootPart"):WaitForChild("HighQualtyPushWorld"),
+    [3] = Vector3.new(math.huge, math.huge, math.huge)
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+  end
+end       
+   end    
+})
+
+Tab:AddButton({
+ Name = "Clutter of camera all",
+ Callback = function()
+for _, player in ipairs(game.Players:GetPlayers()) do
+  if player ~= game.Players.LocalPlayer then
+coroutine.wrap(function()
+repeat wait(0.1)
+local args = {
+    [1] = "FIREOTHERCLIENTTTTT",
+    [2] = workspace:WaitForChild(player.Name),
+    [3] = "PlayFunCtionsTableEFunction",
+    [4] = "SkullCrusherImpactFrames"
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+until player.Character.Humanoid.Health <= 0
+end)()
+  end
+end        
+   end    
+})
+
+Tab:AddButton({
+ Name = "Curse of death all",
+ Callback = function()
+for _, player in ipairs(game.Players:GetPlayers()) do
+  if player ~= game.Players.LocalPlayer then
+coroutine.wrap(function()
+repeat task.wait()
+local args = {
+    [1] = "DamgeHumanoidDDDDD",
+    [2] = workspace:WaitForChild(player.Name):WaitForChild("Humanoid"),
+    [3] = 100
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+until player.Character.Humanoid.Health <= 0
+end)()
+  end
+end        
+   end    
+})
+
 local Section = Tab:AddSection({
  Name = "Control Other"
 })
@@ -378,6 +468,101 @@ local args = {
 
 game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
 end
+    end
+ end   
+})
+
+Tab:AddTextbox({
+ Name = "Invisible player",
+ Default = "",
+ TextDisappear = true,
+ Callback = function(Value)
+ local player = api:GetPlayerByLowerName(Value)
+  if player then
+local args = {
+    [1] = "SetTranspancyyyyyy",
+    [2] = workspace:WaitForChild(player.Name),
+    [3] = true
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+  end
+ end    
+})
+
+Tab:AddTextbox({
+ Name = "Visible player",
+ Default = "",
+ TextDisappear = true,
+ Callback = function(Value)
+local player = api:GetPlayerByLowerName(Value)
+    if player then
+local args = {
+    [1] = "SetTranspancyyyyyy",
+    [2] = workspace:WaitForChild(player.Name),
+    [3] = false
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+    end
+ end   
+})
+
+Tab:AddTextbox({
+ Name = "Mega punish player",
+ Default = "",
+ TextDisappear = true,
+ Callback = function(Value)
+local player = api:GetPlayerByLowerName(Value)
+    if player and player ~= game.Players.LocalPlayer then
+local args = {
+    [1] = "Force",
+    [2] = workspace:WaitForChild(player.Name):WaitForChild("HumanoidRootPart"):WaitForChild("HighQualtyPushWorld"),
+    [3] = Vector3.new(math.huge, math.huge, math.huge)
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+    end
+ end   
+})
+
+Tab:AddTextbox({
+ Name = "Clutter of player camera", 
+ Default = "",
+ TextDisappear = true,
+ Callback = function(Value)
+local player = api:GetPlayerByLowerName(Value)
+    if player then
+repeat wait(0.1)
+local args = {
+    [1] = "FIREOTHERCLIENTTTTT",
+    [2] = workspace:WaitForChild(player.Name),
+    [3] = "PlayFunCtionsTableEFunction",
+    [4] = "SkullCrusherImpactFrames"
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+until player.Character.Humanoid.Health <= 0
+    end
+ end   
+})
+
+Tab:AddTextbox({
+ Name = "Curse by death player",
+ Default = "",
+ TextDisappear = true,
+ Callback = function(Value)
+local player = api:GetPlayerByLowerName(Value)
+    if player then
+ repeat task.wait()
+local args = {
+    [1] = "DamgeHumanoidDDDDD",
+    [2] = workspace:WaitForChild(player.Name):WaitForChild("Humanoid"),
+    [3] = math.huge
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+until player.Character.Humanoid:GetState() == "Dead"
     end
  end   
 })
@@ -619,6 +804,65 @@ local args = {
 
 game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
   end
+end
+   end    
+})
+
+local Tab = Window:MakeTab({
+	Name = "Options",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+Tab:AddToggle({
+ Name = "Cant be ragdoll",
+ Default = false,
+ Callback = function(Value)
+jg = Value
+while jg and task.wait() do
+ local args = {
+    [1] = "ChangeValue",
+    [2] = game:GetService("Players").LocalPlayer.Character.IsRagdoll,
+    [3] = false
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+end
+ end    
+})
+
+Tab:AddButton({
+ Name = "Load Character",
+ Callback = function()
+local args = {
+    [1] = "LoadChar"
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+   end    
+})
+
+Tab:AddButton({
+ Name = "Godmode",
+ Callback = function()
+local rand = game.Players:GetPlayers()[math.random(1, #game.Players:GetPlayers())]
+if rand ~= game.Players.LocalPlayer then
+ local args = {
+    [1] = "ShadowStab",
+    [2] = workspace:WaitForChild(rand.Name),
+    [3] = "ShadowStabEnemy"
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+ wait(1)
+  repeat wait(0.1)
+local args = {
+    [1] = "SweepKickHit",
+    [2] = workspace:WaitForChild(rand.Name)
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+  until rand.Character.Humanoid.Health <= 0
 end
    end    
 })
