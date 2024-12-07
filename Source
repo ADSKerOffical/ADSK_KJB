@@ -245,6 +245,38 @@ end
    end    
 })
 
+Tab:AddButton({
+ Name = "Stun all",
+ Callback = function()
+for _, player in ipairs(game.Players:GetPlayers()) do
+  if player ~= game.Players.LocalPlayer then
+local args = {
+    [1] = "BoulderCrushStunCharrr",
+    [2] = workspace:WaitForChild(player.Name)
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+  end
+end
+   end    
+})
+
+Tab:AddButton({
+ Name = "Unstun all",
+ Callback = function()
+for _, player in ipairs(game.Players:GetPlayers()) do
+  if player ~= game.Players.LocalPlayer then
+local args = {
+    [1] = "BoulderCrushUNNNStunCharrr",
+    [2] = workspace:WaitForChild(player.Name)
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+  end
+end
+   end    
+})
+
 local Section = Tab:AddSection({
  Name = "Control Other"
 })
@@ -567,6 +599,40 @@ until player.Character.Humanoid:GetState() == "Dead"
  end   
 })
 
+Tab:AddTextbox({
+ Name = "Stun player",
+ Default = "",
+ TextDisappear = true,
+ Callback = function(Value)
+local player = api:GetPlayerByLowerName(Value)
+    if player then
+local args = {
+    [1] = "BoulderCrushStunCharrr",
+    [2] = workspace:WaitForChild(player.Name)
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+    end
+ end   
+})
+
+Tab:AddTextbox({
+ Name = "Unstun player",
+ Default = "",
+ TextDisappear = true,
+ Callback = function(Value)
+local player = api:GetPlayerByLowerName(Value)
+    if player then
+local args = {
+    [1] = "BoulderCrushUNNNStunCharrr",
+    [2] = workspace:WaitForChild(player.Name)
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+    end
+ end   
+})
+
 local Section = Tab:AddSection({
  Name = "Apocalypse"
 })
@@ -831,6 +897,49 @@ end
  end    
 })
 
+Tab:AddToggle({
+ Name = "Cant be stunned",
+ Default = false,
+ Callback = function(Value)
+yty = Value
+while yty and task.wait() do
+local args = {
+    [1] = "ChangeAtribbe",
+    [2] = workspace:WaitForChild(game.Players.LocalPlayer.Name),
+    [3] = "Stun",
+    [4] = false
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+
+local args = {
+    [1] = "BoulderCrushUNNNStunCharrr",
+    [2] = workspace:WaitForChild(game.Players.LocalPlayer.Name)
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+end
+ end    
+})
+
+Tab:AddToggle({
+ Name = "Can always hit",
+ Default = false,
+ Callback = function(Value)
+tyyg = Value
+while tyyg and task.wait() do
+local args = {
+    [1] = "ChangeAtribbe",
+    [2] = workspace:WaitForChild(game.Players.LocalPlayer.Name),
+    [3] = "CantHit",
+    [4] = false
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+end
+ end    
+})
+
 Tab:AddButton({
  Name = "Load Character",
  Callback = function()
@@ -864,5 +973,60 @@ local args = {
 game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
   until rand.Character.Humanoid.Health <= 0
 end
+   end    
+})
+
+local Tab = Window:MakeTab({
+	Name = "Extra",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+Tab:AddButton({
+ Name = "Meteor rain",
+ Callback = function()
+        for i = 1, 10 do
+local args = {
+    [1] = "MASSIVEMETORSUMMON",
+    [2] = game.Players.LocalPlayer.Character.HumanoidRootPart.Position + Vector3.new(math.random(-800, 800), 0, math.random(-800, 800))
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+end
+   end    
+})
+
+Tab:AddButton({
+ Name = "My world",
+ Callback = function()
+sound = Instance.new("Sound", game.Workspace)
+sound.SoundId = "rbxassetid://9067394222"
+sound.Volume = 1
+sound.PlaybackSpeed = 1
+sound.Looped = false
+sound:Play()
+ task.wait(1.5)
+for i = 1, 50 do
+ local args = {
+    [1] = "ShadowGardenopennnnn",
+    [2] = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(math.random(-500, 500), 0, math.random(-500, 500))
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+end
+   end    
+})
+
+Tab:AddButton({
+ Name = "Phenomar",
+ Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/ADSKerOffical/ADSK_KJB/refs/heads/main/Phenomar"))()
+   end    
+})
+
+Tab:AddButton({
+ Name = "Thermophenix",
+ Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/ADSKerOffical/KJB_Character_Thermophoenix/refs/heads/main/Source"))()
    end    
 })
