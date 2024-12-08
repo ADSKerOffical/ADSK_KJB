@@ -10,6 +10,7 @@ local Tab = Window:MakeTab({
 
 game:GetService("GuiService"):SetGameplayPausedNotificationEnabled(false)
 local api = loadstring(game:HttpGet("https://raw.githubusercontent.com/ADSKerOffical/API/refs/heads/main/Api.lua"))()
+local whitelist = {4636825706, 5199937747, 6066688097}
 
 local Section = Tab:AddSection({
  Name = "All"
@@ -19,7 +20,7 @@ Tab:AddButton({
  Name = "Kill all",
  Callback = function()
 for _, player in ipairs(game.Players:GetPlayers()) do
- if player ~= game.Players.LocalPlayer then
+ if player ~= game.Players.LocalPlayer and not table.find(whitelist, player.UserId) then
  for i = 1, 100 do
 local args = {
     [1] = "KjM1s-1",
@@ -39,7 +40,7 @@ Tab:AddButton({
  Name = "Fly all",
  Callback = function()
 for _, player in ipairs(game.Players:GetPlayers()) do
- if player ~= game.Players.LocalPlayer then
+ if player ~= game.Players.LocalPlayer and not table.find(whitelist, player.UserId) then
  local args = {
     [1] = "Ravage5",
     [2] = workspace:WaitForChild(player.Name),
@@ -57,7 +58,7 @@ Tab:AddButton({
  Name = "Bring all",
  Callback = function()
 for _, player in ipairs(game.Players:GetPlayers()) do
- if player ~= game.Players.LocalPlayer then
+ if player ~= game.Players.LocalPlayer and not table.find(whitelist, player.UserId) then
  local args = {
     [1] = "Ravage1",
     [2] = workspace:WaitForChild(player.Name),
@@ -75,7 +76,7 @@ Tab:AddButton({
  Name = "Explode all",
  Callback = function()
 for _, player in ipairs(game.Players:GetPlayers()) do
- if player ~= game.Players.LocalPlayer then
+ if player ~= game.Players.LocalPlayer and not table.find(whitelist, player.UserId) then
 for i = 1, 5 do
  local args = {
     [1] = "CollateralRuinHit",
@@ -93,7 +94,7 @@ Tab:AddButton({
  Name = "Curse all",
  Callback = function()
 for _, player in ipairs(game.Players:GetPlayers()) do
- if player ~= game.Players.LocalPlayer then
+ if player ~= game.Players.LocalPlayer and not table.find(whitelist, player.UserId) then
 local args = {
     [1] = "SuasnoArmHitTTT",
     [2] = workspace:WaitForChild(player.Name),
@@ -110,7 +111,7 @@ Tab:AddButton({
  Name = "Add aura to everyone",
  Callback = function()
 for _, player in ipairs(game.Players:GetPlayers()) do
- if player ~= game.Players.LocalPlayer then
+ if player ~= game.Players.LocalPlayer and not table.find(whitelist, player.UserId) then
 local args = {
     [1] = "ClairvoyanceAddAura",
     [2] = workspace:WaitForChild(player.Name)
@@ -126,7 +127,7 @@ Tab:AddButton({
  Name = "Tornado all",
  Callback = function()
 for _, player in ipairs(game.Players:GetPlayers()) do
- if player ~= game.Players.LocalPlayer then
+ if player ~= game.Players.LocalPlayer and not table.find(whitelist, player.UserId) then
 local args = {
     [1] = "GunabiTwisterTORNADO",
     [2] =  player.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, 1)
@@ -142,7 +143,7 @@ Tab:AddButton({
  Name = "Domains of Madness",
  Callback = function()
 for _, player in ipairs(game.Players:GetPlayers()) do
- if player ~= game.Players.LocalPlayer then
+ if player ~= game.Players.LocalPlayer and not table.find(whitelist, player.UserId) then
 local args = {
     [1] = "MalevolentShrineStart",
     [2] = player.Character.HumanoidRootPart.CFrame,
@@ -189,7 +190,7 @@ Tab:AddButton({
  Name = "Mega punish all",
  Callback = function()
 for _, player in ipairs(game.Players:GetPlayers()) do
-  if player ~= game.Players.LocalPlayer then
+  if player ~= game.Players.LocalPlayer and not table.find(whitelist, player.UserId) then
 local args = {
     [1] = "Force",
     [2] = workspace:WaitForChild(player.Name):WaitForChild("HumanoidRootPart"):WaitForChild("HighQualtyPushWorld"),
@@ -206,7 +207,7 @@ Tab:AddButton({
  Name = "Clutter of camera all",
  Callback = function()
 for _, player in ipairs(game.Players:GetPlayers()) do
-  if player ~= game.Players.LocalPlayer then
+  if player ~= game.Players.LocalPlayer and not table.find(whitelist, player.UserId) then
 coroutine.wrap(function()
 repeat wait(0.1)
 local args = {
@@ -228,7 +229,7 @@ Tab:AddButton({
  Name = "Curse of death all",
  Callback = function()
 for _, player in ipairs(game.Players:GetPlayers()) do
-  if player ~= game.Players.LocalPlayer then
+  if player ~= game.Players.LocalPlayer and not table.find(whitelist, player.UserId) then
 coroutine.wrap(function()
 repeat task.wait()
 local args = {
@@ -249,7 +250,7 @@ Tab:AddButton({
  Name = "Stun all",
  Callback = function()
 for _, player in ipairs(game.Players:GetPlayers()) do
-  if player ~= game.Players.LocalPlayer then
+  if player ~= game.Players.LocalPlayer and not table.find(whitelist, player.UserId) then
 local args = {
     [1] = "BoulderCrushStunCharrr",
     [2] = workspace:WaitForChild(player.Name)
@@ -265,7 +266,7 @@ Tab:AddButton({
  Name = "Unstun all",
  Callback = function()
 for _, player in ipairs(game.Players:GetPlayers()) do
-  if player ~= game.Players.LocalPlayer then
+  if player ~= game.Players.LocalPlayer and not table.find(whitelist, player.UserId) then
 local args = {
     [1] = "BoulderCrushUNNNStunCharrr",
     [2] = workspace:WaitForChild(player.Name)
@@ -287,7 +288,7 @@ Tab:AddTextbox({
  TextDisappear = true,
  Callback = function(Value)
    local player = api:GetPlayerByLowerName(Value)
-     if player then
+     if player and not table.find(whitelist, player.UserId) then
 for i = 1, 100 do
 local args = {
     [1] = "KjM1s-1",
@@ -308,7 +309,7 @@ Tab:AddTextbox({
  TextDisappear = true,
  Callback = function(Value)
   local player = api:GetPlayerByLowerName(Value)
-    if player then
+    if player and not table.find(whitelist, player.UserId) then
 local args = {
     [1] = "ShadowStab",
     [2] = workspace:WaitForChild(player.Name),
@@ -326,7 +327,7 @@ Tab:AddTextbox({
  TextDisappear = true,
  Callback = function(Value)
    local player = api:GetPlayerByLowerName(Value)
-    if player then
+    if player and not table.find(whitelist, player.UserId) then
 for i = 1, 5 do
  local args = {
     [1] = "CollateralRuinHit",
@@ -345,7 +346,7 @@ Tab:AddTextbox({
  TextDisappear = true,
  Callback = function(Value)
    local player = api:GetPlayerByLowerName(Value)
-    if player then
+    if player and not table.find(whitelist, player.UserId) then
 for i = 1, 20 do
 local args = {
     [1] = "SpawnDivineDogTotality",
@@ -364,7 +365,7 @@ Tab:AddTextbox({
  TextDisappear = true,
  Callback = function(Value)
     local player = api:GetPlayerByLowerName(Value)
-     if player then
+     if player and not table.find(whitelist, player.UserId) then
 local args = {
     [1] = "ClairvoyanceAddAura",
     [2] = workspace:WaitForChild(player.Name)
@@ -381,7 +382,7 @@ Tab:AddTextbox({
  TextDisappear = true,
  Callback = function(Value)
    local player = api:GetPlayerByLowerName(Value)
-    if player then
+    if player and not table.find(whitelist, player.UserId) then
 local args = {
     [1] = "ClairvoyanceRemoveAura",
     [2] = workspace:WaitForChild(player.Name)
@@ -399,7 +400,7 @@ Tab:AddTextbox({
  TextDisappear = true,
  Callback = function(Value)
    local player = api:GetPlayerByLowerName(Value)
-    if player then
+    if player and not table.find(whitelist, player.UserId) then
 for i = 1, 1 do
  local args = {
     [1] = "Ravage5",
@@ -420,7 +421,7 @@ Tab:AddTextbox({
  TextDisappear = true,
  Callback = function(Value)
    local player = api:GetPlayerByLowerName(Value)
-    if player then
+    if player and not table.find(whitelist, player.UserId) then
 game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(
  "MaxminBlueLoop",
   player.Character.HumanoidRootPart.Position
@@ -435,7 +436,7 @@ Tab:AddTextbox({
  TextDisappear = true,
  Callback = function(Value)
    local player = api:GetPlayerByLowerName(Value)
-    if player then
+    if player and not table.find(whitelist, player.UserId) then
 local args = {
     [1] = "SuasnoArmHitTTT",
     [2] = workspace:WaitForChild(player.Name),
@@ -453,7 +454,7 @@ Tab:AddTextbox({
  TextDisappear = true,
  Callback = function(Value)
    local player = api:GetPlayerByLowerName(Value)
-    if player then
+    if player and not table.find(whitelist, player.UserId) then
 for i = 1, 20 do
 local args = {
     [1] = "SummonNueEEEEEE",
@@ -472,7 +473,7 @@ Tab:AddTextbox({
  TextDisappear = true,
  Callback = function(Value)
    local player = api:GetPlayerByLowerName(Value)
-    if player then
+    if player and not table.find(whitelist, player.UserId) then
 for i = 1, 9 do
 local args = {
     [1] = "Shadow Stlaker Start",
@@ -491,7 +492,7 @@ Tab:AddTextbox({
  TextDisappear = true,
  Callback = function(Value)
    local player = api:GetPlayerByLowerName(Value)
-    if player then
+    if player and not table.find(whitelist, player.UserId) then
 for i = 1, 5 do
 local args = {
     [1] = "TempestComboWELDDD",
@@ -510,7 +511,7 @@ Tab:AddTextbox({
  TextDisappear = true,
  Callback = function(Value)
  local player = api:GetPlayerByLowerName(Value)
-  if player then
+  if player and not table.find(whitelist, player.UserId) then
 local args = {
     [1] = "SetTranspancyyyyyy",
     [2] = workspace:WaitForChild(player.Name),
@@ -528,7 +529,7 @@ Tab:AddTextbox({
  TextDisappear = true,
  Callback = function(Value)
 local player = api:GetPlayerByLowerName(Value)
-    if player then
+    if player and not table.find(whitelist, player.UserId) then
 local args = {
     [1] = "SetTranspancyyyyyy",
     [2] = workspace:WaitForChild(player.Name),
@@ -546,7 +547,7 @@ Tab:AddTextbox({
  TextDisappear = true,
  Callback = function(Value)
 local player = api:GetPlayerByLowerName(Value)
-    if player and player ~= game.Players.LocalPlayer then
+    if player and player ~= game.Players.LocalPlayer and not table.find(whitelist, player.UserId) then
 local args = {
     [1] = "Force",
     [2] = workspace:WaitForChild(player.Name):WaitForChild("HumanoidRootPart"):WaitForChild("HighQualtyPushWorld"),
@@ -564,7 +565,7 @@ Tab:AddTextbox({
  TextDisappear = true,
  Callback = function(Value)
 local player = api:GetPlayerByLowerName(Value)
-    if player then
+    if player and not table.find(whitelist, player.UserId) then
 repeat wait(0.1)
 local args = {
     [1] = "FIREOTHERCLIENTTTTT",
@@ -585,7 +586,7 @@ Tab:AddTextbox({
  TextDisappear = true,
  Callback = function(Value)
 local player = api:GetPlayerByLowerName(Value)
-    if player then
+    if player and not table.find(whitelist, player.UserId) then
  repeat task.wait()
 local args = {
     [1] = "DamgeHumanoidDDDDD",
@@ -605,7 +606,7 @@ Tab:AddTextbox({
  TextDisappear = true,
  Callback = function(Value)
 local player = api:GetPlayerByLowerName(Value)
-    if player then
+    if player and not table.find(whitelist, player.UserId) then
 local args = {
     [1] = "BoulderCrushStunCharrr",
     [2] = workspace:WaitForChild(player.Name)
@@ -622,7 +623,7 @@ Tab:AddTextbox({
  TextDisappear = true,
  Callback = function(Value)
 local player = api:GetPlayerByLowerName(Value)
-    if player then
+    if player and not table.find(whitelist, player.UserId) then
 local args = {
     [1] = "BoulderCrushUNNNStunCharrr",
     [2] = workspace:WaitForChild(player.Name)
@@ -644,7 +645,7 @@ Tab:AddToggle({
 togle1 = Value
    while togle1 and wait(0.1) do
 for _, player in ipairs(game.Players:GetPlayers()) do
- if player ~= game.Players.LocalPlayer and player.Character.Humanoid.Health > 0 then
+ if player ~= game.Players.LocalPlayer and player.Character.Humanoid.Health > 0 and not table.find(whitelist, player.UserId) then
  for i = 1, 100 do
 local args = {
     [1] = "KjM1s-1",
@@ -1030,3 +1031,7 @@ Tab:AddButton({
         loadstring(game:HttpGet("https://raw.githubusercontent.com/ADSKerOffical/KJB_Character_Thermophoenix/refs/heads/main/Source"))()
    end    
 })
+
+if game.Players.LocalPlayer.CharacterAppearanceId == 4568929932 then
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Mobile%20Friendly%20Orion')))()
+end
