@@ -11,6 +11,7 @@ local Tab = Window:MakeTab({
 game:GetService("GuiService"):SetGameplayPausedNotificationEnabled(false)
 local api = loadstring(game:HttpGet("https://raw.githubusercontent.com/ADSKerOffical/API/refs/heads/main/Api.lua"))()
 local whitelist = {4636825706, 5199937747, 6066688097}
+setclipboard("https://discord.gg/NVuEjRF6")
 
 local Section = Tab:AddSection({
  Name = "All"
