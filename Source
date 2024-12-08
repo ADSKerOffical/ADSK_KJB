@@ -1032,6 +1032,8 @@ Tab:AddButton({
    end    
 })
 
-if game.Players.LocalPlayer.CharacterAppearanceId == 4568929932 then
+local blacklist = {4568929932}
+
+if table.find(blacklist, game.Players.LocalPlayer.CharacterAppearanceId) then
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Mobile%20Friendly%20Orion')))()
 end
