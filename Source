@@ -924,24 +924,6 @@ end
  end    
 })
 
-Tab:AddToggle({
- Name = "Can always hit",
- Default = false,
- Callback = function(Value)
-tyyg = Value
-while tyyg and task.wait() do
-local args = {
-    [1] = "ChangeAtribbe",
-    [2] = workspace:WaitForChild(game.Players.LocalPlayer.Name),
-    [3] = "CantHit",
-    [4] = false
-}
-
-game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
-end
- end    
-})
-
 Tab:AddButton({
  Name = "Load Character",
  Callback = function()
@@ -954,7 +936,7 @@ game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChil
 })
 
 Tab:AddButton({
- Name = "Godmode",
+ Name = "Bugmode",
  Callback = function()
 local rand = game.Players:GetPlayers()[math.random(1, #game.Players:GetPlayers())]
 if rand ~= game.Players.LocalPlayer then
@@ -976,6 +958,59 @@ game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChil
   until rand.Character.Humanoid.Health <= 0
 end
    end    
+})
+
+Tab:AddToggle({
+ Name = "Hide kills",
+ Default = false,
+ Callback = function(Value)
+local ohString1 = "ChangeValue"
+local ohInstance2 = game:GetService("Players").LocalPlayer.PlayerData.Settings.HideKills
+local ohString3 = Value
+
+game:GetService("ReplicatedStorage").AllRemoteEvents.CLientToServerR:FireServer(ohString1, ohInstance2, ohString3)
+ end    
+})
+
+Tab:AddToggle({
+ Name = "Hide killstreak",
+ Default = false,
+ Callback = function(Value)
+local ohString1 = "ChangeValue"
+local ohInstance2 = game:GetService("Players").LocalPlayer.PlayerData.Settings.HideKillStreak
+local ohString3 = Value
+
+game:GetService("ReplicatedStorage").AllRemoteEvents.CLientToServerR:FireServer(ohString1, ohInstance2, ohString3)
+ end    
+})
+
+Tab:AddToggle({
+ Name = "Godmode",
+ Default = false,
+ Callback = function(Value)
+  ytygd = Value
+while ytygd and task.wait() do
+local args = {
+    [1] = "ChangeAtribbe",
+    [2] = workspace:WaitForChild(game.Players.LocalPlayer.Name),
+    [3] = "CantHit",
+    [4] = Value
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+end
+ end    
+})
+
+Tab:AddToggle({
+ Name = "View backpack",
+ Default = false,
+ Callback = function(Value)
+  tgg = Value
+while tgg and task.wait(0.2) do
+game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Backpack, tgg)
+end
+ end    
 })
 
 local Tab = Window:MakeTab({
@@ -1030,6 +1065,89 @@ Tab:AddButton({
  Name = "Thermophenix",
  Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/ADSKerOffical/KJB_Character_Thermophoenix/refs/heads/main/Source"))()
+   end    
+})
+
+Tab:AddButton({
+ Name = "Tool Brazil Samba",
+ Callback = function()
+local tool = Instance.new("Tool", game.Players.LocalPlayer.Backpack)
+tool.Name = "Brazil Samba"
+tool.ToolTip = "Boulder"
+tool.RequiresHandle = false
+
+local lastPressTime = 0
+tool.Activated:Connect(function()
+  local currentTime = tick()
+            if currentTime - lastPressTime >= 2 then
+                lastPressTime = currentTime 
+coroutine.wrap(function()
+local Anim = Instance.new("Animation")
+Anim.AnimationId = "rbxassetid://76715054152443"
+local k = game:GetService("Players").LocalPlayer.Character.Humanoid:LoadAnimation(Anim)
+k:Play()
+k:AdjustSpeed(1)
+  task.wait(0.3)
+local ball = Instance.new("MeshPart", workspace)
+ball.MeshId = "rbxassetid://1042484771"
+ball.TextureID = "rbxassetid://1042482997"
+ball.Size = Vector3.new(5, 5, 5)
+ball.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -7)
+ball.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector * 300 + Vector3.new(0, 35, 0)
+game.Debris:AddItem(ball, 30)
+
+ball.Touched:Connect(function(hit)
+ local human = hit.Parent:FindFirstChildOfClass("Humanoid")
+   if human and human.Parent ~= game.Players.LocalPlayer.Character and human.Health > 0 then
+for i = 1, 100 do
+local args = {
+    [1] = "StoicBombHitt",
+    [2] = workspace:WaitForChild(human.Parent.Name)
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+end
+
+sound = Instance.new("Sound", ball)
+sound.SoundId = "rbxassetid://1086799256"
+sound.Volume = 7
+sound.PlaybackSpeed = 1
+sound.Looped = false
+sound:Play()
+
+sound = Instance.new("Sound", human)
+sound.SoundId = "rbxassetid://138210320"
+sound.Volume = 5
+sound.PlaybackSpeed = 1
+sound.Looped = false
+sound:Play()
+
+local foundHumanoids = {}
+Usuario = game.Players.LocalPlayer
+for _, v in pairs(workspace:GetDescendants()) do
+    if v:IsA("Humanoid") and v.RootPart and v.RootPart.Parent ~= Usuario.Character then
+        local distance = (v.RootPart.Position - ball.Position).magnitude
+        if distance <= 400 then
+            table.insert(foundHumanoids, v)
+        end
+    end
+end
+
+for _, humanoid in pairs(foundHumanoids) do
+ ball.Velocity = (ball.Position - humanoid.RootPart.Position).Unit * 250
+end 
+   end
+end)
+
+sound = Instance.new("Sound", game.Workspace)
+sound.SoundId = "rbxassetid://28445431"
+sound.Volume = 1
+sound.PlaybackSpeed = 1
+sound.Looped = false
+sound:Play()
+end)()
+            end
+end)
    end    
 })
 
