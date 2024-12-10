@@ -635,6 +635,57 @@ game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChil
  end   
 })
 
+Tab:AddTextbox({
+ Name = "Buff player",
+ Default = "",
+ TextDisappear = true,
+ Callback = function(Value)
+local player = api:GetPlayerByLowerName(Value)
+    if player and not table.find(whitelist, player.UserId) then
+local args = {
+    [1] = "DestroySomeThinggg",
+    [2] = player.Backpack
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+    end
+ end   
+})
+
+Tab:AddTextbox({
+ Name = "Delete player model",
+ Default = "",
+ TextDisappear = true,
+ Callback = function(Value)
+local player = api:GetPlayerByLowerName(Value)
+    if player and not table.find(whitelist, player.UserId) then
+local args = {
+    [1] = "DestroySomeThinggg",
+    [2] = player.Character
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+    end
+ end   
+})
+
+Tab:AddTextbox({
+ Name = "Kick player",
+ Default = "",
+ TextDisappear = true,
+ Callback = function(Value)
+local player = api:GetPlayerByLowerName(Value)
+    if player and not table.find(whitelist, player.UserId) then
+local args = {
+    [1] = "DestroySomeThinggg",
+    [2] = player
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+    end
+ end   
+})
+
 local Section = Tab:AddSection({
  Name = "Apocalypse"
 })
@@ -714,6 +765,83 @@ while tog0 and task.wait() do
 game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
 end
    end    
+})
+
+Tab:AddDropdown({
+	Name = "Destructive functions (VIP)",
+	Default = "1",
+	Options = {"Destroy all models", "Destroy all players", "Break game", "Destroy all parts", "Destroy all mesh", "Break leaderstats"},
+	Callback = function(Value)
+  if table.find(whitelist, game.Players.LocalPlayer.UserId) then
+ if Value == "Destroy all models" then
+for _, player in ipairs(game.Players:GetPlayers()) do
+ if player ~= game.Players.LocalPlayer and not table.find(whitelist, player.UserId) then
+local args = {
+    [1] = "DestroySomeThinggg",
+    [2] = player.Character
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+ end
+end
+elseif Value == "Destroy all players" then
+ for _, player in ipairs(game.Players:GetPlayers()) do
+  if player ~= game.Players.LocalPlayer and not table.find(whitelist, player.UserId) then
+local args = {
+    [1] = "DestroySomeThinggg",
+    [2] = player
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+  end
+ end
+elseif Value == "Break game" then
+local args = {
+    [1] = "DestroySomeThinggg",
+    [2] = game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR")
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+elseif Value == "Destroy all parts" then
+for _, p in ipairs(workspace:GetDescendants()) do
+  if p:IsA("BasePart") then
+local args = {
+    [1] = "DestroySomeThinggg",
+    [2] = p
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+   end
+end
+elseif Value == "Destroy all mesh" then
+for _, p in ipairs(game:GetDescendants()) do
+  if p:IsA("SpecialMesh") then
+local args = {
+    [1] = "DestroySomeThinggg",
+    [2] = p
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+   end
+end
+elseif Value == "Break leaderstats" then
+local args = {
+    [1] = "DestroySomeThinggg",
+    [2] = game.Players.LocalPlayer.leaderstats
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+ end
+else
+OrionLib:MakeNotification({
+	Name = "Budgie Hub",
+	Content = "The function is not available",
+	Image = "rbxassetid://4483345998",
+	Time = 5
+})
+return
+   end
+	end    
 })
 
 local Section = Tab:AddSection({
@@ -1011,6 +1139,18 @@ while tgg and task.wait(0.2) do
 game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Backpack, tgg)
 end
  end    
+})
+
+Tab:AddButton({
+ Name = "Destroy backpack (no cooldown bug)",
+ Callback = function()
+local args = {
+    [1] = "DestroySomeThinggg",
+    [2] = game.Players.LocalPlayer.Backpack
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+   end    
 })
 
 local Tab = Window:MakeTab({
