@@ -11,7 +11,6 @@ local Tab = Window:MakeTab({
 game:GetService("GuiService"):SetGameplayPausedNotificationEnabled(false)
 local api = loadstring(game:HttpGet("https://raw.githubusercontent.com/ADSKerOffical/API/refs/heads/main/Api.lua"))()
 local whitelist = {4636825706, 5199937747, 6066688097}
-setclipboard("https://discord.gg/NVuEjRF6")
 
 local Section = Tab:AddSection({
  Name = "All"
@@ -636,18 +635,43 @@ game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChil
 })
 
 Tab:AddTextbox({
- Name = "Buff player",
+ Name = "Pacify player",
  Default = "",
  TextDisappear = true,
  Callback = function(Value)
 local player = api:GetPlayerByLowerName(Value)
-    if player and not table.find(whitelist, player.UserId) then
+    if player then
+for _, obj in ipairs(player.Backpack:GetDescendants()) do
+  if obj:IsA("Tool") then
 local args = {
     [1] = "DestroySomeThinggg",
-    [2] = player.Backpack
+    [2] = obj
 }
 
 game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+  end
+end
+    end
+ end   
+})
+
+Tab:AddTextbox({
+ Name = "Remove killstreak player",
+ Default = "",
+ TextDisappear = true,
+ Callback = function(Value)
+local player = api:GetPlayerByLowerName(Value)
+    if player then
+for _, obj in ipairs(player.Character:GetDescendants()) do
+  if obj:IsA("Highlight") or obj:IsA("BillboardGui") then
+local args = {
+    [1] = "DestroySomeThinggg",
+    [2] = obj
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+  end
+end
     end
  end   
 })
@@ -1151,6 +1175,42 @@ local args = {
 
 game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
    end    
+})
+
+Tab:AddButton({
+ Name = "Remove killstreak",
+ Callback = function()
+for _, obj in ipairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+  if obj:IsA("Highlight") or obj:IsA("BillboardGui") then
+local args = {
+    [1] = "DestroySomeThinggg",
+    [2] = obj
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+  end
+end
+   end    
+})
+
+Tab:AddToggle({
+ Name = "Loop Remove Killstreak",
+ Default = false,
+ Callback = function(Value)
+uiui = Value
+while uiui and task.wait(0.1) do
+for _, obj in ipairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+  if obj:IsA("Highlight") or obj:IsA("BillboardGui") then
+local args = {
+    [1] = "DestroySomeThinggg",
+    [2] = obj
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+  end
+end
+    end
+ end    
 })
 
 local Tab = Window:MakeTab({
