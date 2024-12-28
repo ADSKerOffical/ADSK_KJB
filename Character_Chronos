@@ -16,12 +16,6 @@ game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChil
  repeat wait() until game.Players.LocalPlayer.Character
  task.wait(0.5)
  
- for _, tool in ipairs(game.Players.LocalPlayer.Backpack:GetDescendants()) do
-   if tool:IsA("Tool") then
-tool:Destroy()
-   end
- end
- 
  game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Backpack, true)
  
  local args = {
@@ -105,6 +99,52 @@ end)
     end
       task.wait(0.3)
     k:Stop()
+            end
+end)
+
+tool.Parent = game.Players.LocalPlayer.Backpack
+
+local tool = Instance.new("Tool")
+tool.Name = "Energy Fuse"
+tool.RequiresHandle = false
+
+local lastPressTime = 0
+tool.Activated:Connect(function()
+  local currentTime = tick()
+            if currentTime - lastPressTime >= 6 then
+                lastPressTime = currentTime 
+local Anim = Instance.new("Animation")
+Anim.AnimationId = "rbxassetid://97089381715498"
+local k = game:GetService("Players").LocalPlayer.Character.Humanoid:LoadAnimation(Anim)
+k:Play()
+k:AdjustSpeed(1)
+  task.wait(1.4)
+   for i = 1, 36 do
+local ball = Instance.new("Part", workspace)
+ball.Material = "Neon"
+ball.Color = Color3.new(1, 1, 1)
+ball.CanCollide = false
+ball.Size = Vector3.new(3.5, 3.5, 3.5)
+ball.Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+ball.Shape = "Ball"
+game.Debris:AddItem(ball, 8)
+
+ball.Touched:Connect(function(hit)
+ local humanoid = hit.Parent:FindFirstChildOfClass("Humanoid")
+   if humanoid and humanoid.Parent ~= game.Players.LocalPlayer.Character then
+local args = {
+    [1] = "SweepKickKick",
+    [2] = workspace:WaitForChild(humanoid.Parent.Name)
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+   end
+end)
+
+local bodyVel = Instance.new("BodyVelocity", ball)
+bodyVel.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
+bodyVel.Velocity = Vector3.new(350 * math.cos(math.rad(10 * i)), 0, 350 * math.sin(math.rad(10 * i)))
+   end
             end
 end)
 
@@ -278,6 +318,81 @@ partTweenn2 = game:GetService("TweenService"):Create(crater, TweenInfo.new(0.7, 
     partTweenn2:Play()
     end
 end)
+
+local tool = Instance.new("Tool")
+tool.Name = "Time Destroyed"
+tool.ToolTip = "The hunt has begun"
+tool.RequiresHandle = false
+
+local lastPressTime = 0
+tool.Activated:Connect(function()
+  local currentTime = tick()
+            if currentTime - lastPressTime >= 60 then
+                lastPressTime = currentTime 
+local ST = game.Lighting.TimeOfDay
+local Bool = true
+local SFC = game.Lighting.FogColor
+local SFE = game.Lighting.FogEnd
+local SFS = game.Lighting.FogColor
+local sky = Instance.new("Sky", game.Lighting)
+
+local Anim = Instance.new("Animation")
+Anim.AnimationId = "rbxassetid://101379418339366"
+local k = game:GetService("Players").LocalPlayer.Character.Humanoid:LoadAnimation(Anim)
+k:Play()
+k:AdjustSpeed(1)
+  task.wait(1.6)
+amb = Instance.new("Sound", game.Workspace)
+amb.SoundId = "rbxassetid://9113048735"
+amb.Volume = 2
+amb.PlaybackSpeed = 1
+amb.Looped = false
+amb:Play()
+
+sky.CelestialBodiesShown = false
+sky.StarCount = 0
+game.Lighting.TimeOfDay = "00:00:00"
+game.Lighting.FogStart = 0
+game.Lighting.FogEnd = 100
+game.Lighting.FogColor = Color3.new(0, 0, 0)
+   spawn(function()
+local count = 0
+repeat wait(0.5)
+count += 1
+  for _, hum in ipairs(workspace:GetDescendants()) do
+    if hum:IsA("Humanoid") and hum.Parent ~= game.Players.LocalPlayer.Character and hum.Health > 0 then
+local args = {
+    [1] = "BoulderCrushStunCharrr",
+    [2] = workspace:WaitForChild(hum.Parent.Name)
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+
+local args = {
+    [1] = "SweepKickHit",
+    [2] = workspace:WaitForChild(hum.Parent.Name)
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+    end
+  end
+until Bool ~= true or count >= 40
+   end)
+task.wait(20)
+Bool = false
+game.Lighting.TimeOfDay = ST
+game.Lighting.FogStart = SFS
+game.Lighting.FogEnd = SFE
+game.Lighting.FogColor = SFC
+
+partTweenn2 = game:GetService("TweenService"):Create(amb, TweenInfo.new(0.7, Enum.EasingStyle.Linear), {
+        Volume = 0
+    })
+    partTweenn2:Play()
+            end
+end)
+
+tool.Parent = game.Players.LocalPlayer.Backpack
 
 local tool = Instance.new("Tool")
 tool.Name = "The Insightful Light"
