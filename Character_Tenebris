@@ -1,0 +1,207 @@
+local args = {
+    [1] = "LoadChar"
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+
+local args = {
+    [1] = "ChangeValue",
+    [2] = game:GetService("Players").LocalPlayer.PlayerGui.NoResetOnSpawn:WaitForChild("SelctionChar"),
+    [3] = "Gojo"
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+
+ task.wait(0.5)
+ repeat wait() until game.Players.LocalPlayer.Character
+ task.wait(0.5)
+ 
+ game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Backpack, true)
+ 
+ -- later add here character accessories
+ 
+ local tool = Instance.new("Tool")
+tool.Name = "Touch Trap"
+tool.RequiresHandle = false
+
+local lastPressTime = 0
+tool.Activated:Connect(function()
+  local currentTime = tick()
+            if currentTime - lastPressTime >= 2 then
+                lastPressTime = currentTime 
+local Anim = Instance.new("Animation")
+Anim.AnimationId = "rbxassetid://18561550249"
+local k = game:GetService("Players").LocalPlayer.Character.Humanoid:LoadAnimation(Anim)
+k:Play()
+k:AdjustSpeed(1)
+ task.wait(0.4)
+local box = Instance.new("Part", workspace)
+box.Size = Vector3.new(2, 2, 2)
+box.Transparency = 1
+box.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -3.5)
+game.Debris:AddItem(box, 60)
+
+local sel = Instance.new("SelectionBox", box)
+sel.Adornee = box
+
+loop = Instance.new("Sound", box)
+loop.SoundId = "rbxassetid://2585316537"
+loop.Volume = 2
+loop.PlaybackSpeed = 1
+loop.Looped = true
+loop:Play()
+
+box.Touched:Connect(function(hit)
+ local humanoid = hit.Parent:FindFirstChildOfClass("Humanoid")
+  if humanoid and humanoid.Parent ~= game.Players.LocalPlayer.Character then
+box.CanTouch = false
+partTweenn2 = game:GetService("TweenService"):Create(sel, TweenInfo.new(1, Enum.EasingStyle.Linear), {
+        Color3 = Color3.new(1, 0, 0)
+    })
+    partTweenn2:Play()
+    
+sound = Instance.new("Sound", box)
+sound.SoundId = "rbxassetid://181004943"
+sound.Volume = 1
+sound.PlaybackSpeed = 1
+sound.Looped = false
+sound:Play()
+
+task.wait(1)
+sel:Destroy()
+loop:Stop()
+box.CanCollide = false
+box.Anchored = true
+sound = Instance.new("Sound", box)
+sound.SoundId = "rbxassetid://314970761"
+sound.Volume = 3
+sound.PlaybackSpeed = 1
+sound.Looped = false
+sound:Play()
+
+for i = 1, 6 do
+ local hu = Instance.new("Part", workspace)
+ hu.Position = box.Position + Vector3.new(math.random(-10, 10), 2, math.random(-10, 10))
+ hu.Transparency = 1
+ hu.Velocity = (box.Position - hu.Position).Unit * -275
+ hu.Size = Vector3.new(0.6, 0.6, 0.6)
+ 
+ local dey = Instance.new("SelectionBox", hu)
+ dey.Adornee = hu
+ game.Debris:AddItem(hu, 12)
+end
+
+local foundHumanoids = {}
+Usuario = game.Players.LocalPlayer
+for _, v in pairs(workspace:GetDescendants()) do
+    if v:IsA("Humanoid") and v.RootPart and v.RootPart.Parent ~= Usuario.Character then
+        local distance = (v.RootPart.Position - box.Position).magnitude
+        if distance <= 30 then
+            table.insert(foundHumanoids, v)
+        end
+    end
+end
+
+for _, humanoi in pairs(foundHumanoids) do
+  for i = 1, 2 do
+local args = {
+    [1] = "StoicBombHitt",
+    [2] = workspace:WaitForChild(humanoi.Parent.Name)
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+  end
+end
+  end
+end)
+            end
+end)
+
+tool.Parent = game.Players.LocalPlayer.Backpack
+
+local tool = Instance.new("Tool")
+tool.Name = "Explosive Vector"
+tool.RequiresHandle = false
+
+local lastPressTime = 0
+tool.Activated:Connect(function()
+  local currentTime = tick()
+            if currentTime - lastPressTime >= 3 then
+                lastPressTime = currentTime 
+local Anim = Instance.new("Animation")
+Anim.AnimationId = "rbxassetid://18285571639"
+local k = game:GetService("Players").LocalPlayer.Character.Humanoid:LoadAnimation(Anim)
+k:Play()
+k:AdjustSpeed(1)
+  task.wait(0.3)
+local box = Instance.new("Part", workspace)
+box.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0.3, -3)
+box.CanCollide = false
+box.Transparency = 1
+box.Size = Vector3.new(2.5, 2.5, 2.5)
+game.Debris:AddItem(box, 5)
+
+local sel = Instance.new("SelectionBox", box)
+sel.Adornee = box
+
+local bodyVel = Instance.new("BodyVelocity", box)
+bodyVel.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
+bodyVel.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector * 30
+ task.wait(1.5)
+bodyVel:Destroy()
+sel:Destroy()
+box.Anchored = true
+
+local square = Instance.new("Part", workspace)
+square.CanCollide = false
+square.Position = box.Position
+square.Anchored = true
+square.Color = Color3.new(0, 0, 0.8)
+square.Size = Vector3.zero
+square.Material = "SmoothPlastic"
+game.Debris:AddItem(square, 2)
+
+local foundHumanoids = {}
+Usuario = game.Players.LocalPlayer
+for _, v in pairs(workspace:GetDescendants()) do
+    if v:IsA("Humanoid") and v.RootPart and v.RootPart.Parent ~= Usuario.Character then
+        local distance = (v.RootPart.Position - box.Position).magnitude
+        if distance <= 24 then
+            table.insert(foundHumanoids, v)
+        end
+    end
+end
+
+for _, humanoid in pairs(foundHumanoids) do
+  for i = 1, 5 do
+local args = {
+    [1] = "SweepKickKick",
+    [2] = workspace:WaitForChild(humanoid.Parent.Name)
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+  end
+end 
+
+local partTweenn2 = game:GetService("TweenService"):Create(square, TweenInfo.new(0.7, Enum.EasingStyle.Exponential), {
+        Transparency = 1,
+        Color = Color3.new(0, 0, 0),
+        Size = Vector3.new(40, 40, 40)
+    })
+    partTweenn2:Play()
+
+ for i = 1, 5 do
+local shard = Instance.new("Part", workspace)
+shard.Transparency = 1
+shard.Size = Vector3.new(1, 1, 1)
+shard.Position = box.Position + Vector3.new(math.random(-10, 10), 0, math.random(-10, 10))
+shard.Velocity = (box.Position - shard.Position).Unit * 200
+
+local sel = Instance.new("SelectionBox", shard)
+sel.Adornee = shard
+game.Debris:AddItem(shard, 8)
+ end
+            end
+end)
+
+tool.Parent = game.Players.LocalPlayer.Backpack
