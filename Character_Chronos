@@ -423,20 +423,37 @@ sound.Volume = 4
 sound.PlaybackSpeed = 1
 sound.Looped = false
 sound:Play()
-   for _, hum in ipairs(workspace:GetDescendants()) do
-     if hum:IsA("Humanoid") and hum.Parent ~= game.Players.LocalPlayer.Character then
-for _, part in ipairs(hum.Parent:GetDescendants()) do
-  if part:IsA("BasePart") then
+   local foundHumanoids = {}
+local radius = 30
+local player = game.Players.LocalPlayer
+local origin = player.Character.HumanoidRootPart.Position
+local direction = player.Character.HumanoidRootPart.CFrame.LookVector
+
+for _, v in pairs(workspace:GetDescendants()) do
+    if v:IsA("Humanoid") and v.RootPart and v.RootPart.Parent ~= player.Character then
+        local humanoidPosition = v.RootPart.Position
+        local toHumanoid = humanoidPosition - origin
+        local distance = toHumanoid.magnitude
+        local angle = math.acos(toHumanoid.Unit:Dot(direction))
+
+        if distance <= 26804 and angle < math.rad(30) then
+            table.insert(foundHumanoids, v)
+        end
+    end
+end
+
+      for _, humanoid in pairs(foundHumanoids) do
+  for _, part in ipairs(humanoid.Parent:GetDescendants()) do
+    if part:IsA("BasePart") then
 local args = {
     [1] = "DestroySomeThinggg",
     [2] = part
 }
 
 game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
-  end
-end
      end
    end
+      end
 game.Lighting.ExposureCompensation = 20
   task.wait(1.5)
     for i = 1, 20 do
