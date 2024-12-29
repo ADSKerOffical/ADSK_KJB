@@ -205,3 +205,83 @@ game.Debris:AddItem(shard, 8)
 end)
 
 tool.Parent = game.Players.LocalPlayer.Backpack
+
+local tool = Instance.new("Tool")
+tool.Name = "Piercing Dash"
+tool.RequiresHandle = false
+
+local lastPressTime = 0
+tool.Activated:Connect(function()
+  local currentTime = tick()
+            if currentTime - lastPressTime >= 4 then
+                lastPressTime = currentTime 
+local Anim = Instance.new("Animation")
+Anim.AnimationId = "rbxassetid://125142699630236"
+local k = game:GetService("Players").LocalPlayer.Character.Humanoid:LoadAnimation(Anim)
+k:Play()
+k:AdjustSpeed(1)
+ task.wait(0.2)
+local args = {
+    [1] = "TOPIMPORTANT_VFXEMITEER",
+    [2] = game:GetService("ReplicatedStorage"):WaitForChild("VFX"):WaitForChild("Sukuna"):WaitForChild("RagingPummel"):WaitForChild("ThrowRaging"),
+    [3] = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+
+sound = Instance.new("Sound", game.Players.LocalPlayer.Character.HumanoidRootPart)
+sound.SoundId = "rbxassetid://6128977275"
+sound.Volume = 2.5
+sound.PlaybackSpeed = 1
+sound.Looped = false
+sound:Play()
+
+local foundHumanoids = {}
+local radius = 10
+local player = game.Players.LocalPlayer
+local origin = player.Character.HumanoidRootPart.Position
+local direction = player.Character.HumanoidRootPart.CFrame.LookVector
+
+for _, v in pairs(workspace:GetDescendants()) do
+    if v:IsA("Humanoid") and v.RootPart and v.RootPart.Parent ~= player.Character then
+        local humanoidPosition = v.RootPart.Position
+        local toHumanoid = humanoidPosition - origin
+        local distance = toHumanoid.magnitude
+        local angle = math.acos(toHumanoid.Unit:Dot(direction))
+
+        if distance <= 35 and angle < math.rad(30) then
+            table.insert(foundHumanoids, v)
+        end
+    end
+end
+
+for _, humanoid in pairs(foundHumanoids) do
+sound = Instance.new("Sound", humanoid.RootPart)
+sound.SoundId = "rbxassetid://6875009415"
+sound.Volume = 2
+sound.PlaybackSpeed = 1
+sound.Looped = false
+sound:Play()
+
+ for i = 1, 4 do
+  local args = {
+    [1] = "SweepKickKick",
+    [2] = workspace:WaitForChild(humanoid.Parent.Name)
+}
+
+ game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+  end
+   if humanoid.Health <= 0 then
+local args = {
+    [1] = "StoicBombHitt",
+    [2] = workspace:WaitForChild(humanoid.Parent.Name)
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+   end
+end
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -20)
+            end
+end)
+
+tool.Parent = game.Players.LocalPlayer.Backpack
