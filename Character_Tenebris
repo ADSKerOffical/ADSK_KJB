@@ -18,7 +18,54 @@ game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChil
  
  game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Backpack, true)
  
- -- later add here character accessories
+ for _, obj in ipairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+  if obj:IsA("BasePart") then
+obj.Color = Color3.new(0.4, 0.4, 0.4)
+  elseif obj:IsA("Shirt") or obj:IsA("Pants") or obj:IsA("Accessory") then
+obj:Destroy()
+   elseif obj:IsA("Texture") or obj:IsA("Decal") then
+obj:Destroy()
+  end
+end
+
+local cloak = Instance.new("MeshPart", workspace)
+cloak.MeshId = "rbxassetid://18760389159"
+cloak.Color = Color3.new(0, 0, 0)
+cloak.CanCollide = false
+cloak.Size = Vector3.new(1, 1, 1)
+cloak.Material = "SmoothPlastic"
+
+local CW = Instance.new("Weld", cloak)
+CW.C0 = CFrame.new(0, 2.2, -0.5)
+CW.Part0 = cloak
+CW.Part1 = game.Players.LocalPlayer.Character.Head
+
+local hair = Instance.new("MeshPart", workspace)
+hair.MeshId = "rbxassetid://83293901"
+hair.TextureID = "rbxassetid://6858317867"
+hair.Size = Vector3.new(1, 1, 1)
+hair.CanCollide = false
+
+local HW = Instance.new("Weld", hair)
+HW.C0 = CFrame.new(0, -0.25, 0.2)
+HW.Part0 = hair
+HW.Part1 = game.Players.LocalPlayer.Character.Head
+
+local face = Instance.new("MeshPart", workspace)
+face.MeshId = "rbxassetid://17826310061"
+face.TextureID = "rbxassetid://17826399930"
+face.CanCollide = false
+face.Size = Vector3.new(2, 2, 2)
+
+local FW = Instance.new("Weld", face)
+FW.C0 = CFrame.new(0, -0.1, -0.6) * CFrame.Angles(0, math.rad(180), 0)
+FW.Part0 = face
+FW.Part1 = game.Players.LocalPlayer.Character.Head
+
+shirt = Instance.new("Shirt", game.Players.LocalPlayer.Character)
+pants = Instance.new("Pants", game.Players.LocalPlayer.Character)
+shirt.ShirtTemplate = "rbxassetid://676428254"
+pants.PantsTemplate = "rbxassetid://676428351"
  
  local tool = Instance.new("Tool")
 tool.Name = "Touch Trap"
@@ -281,6 +328,35 @@ game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChil
    end
 end
 game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -20)
+            end
+end)
+
+tool.Parent = game.Players.LocalPlayer.Backpack
+
+local tool = Instance.new("Tool")
+tool.Name = "Teleport Front"
+tool.RequiresHandle = false
+
+local lastPressTime = 0
+tool.Activated:Connect(function()
+  local currentTime = tick()
+            if currentTime - lastPressTime >= 3 then
+                lastPressTime = currentTime 
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame *= CFrame.new(0, 0, -22)
+sound = Instance.new("Sound", game.Players.LocalPlayer.Character.HumanoidRootPart)
+sound.SoundId = "rbxassetid://289556450"
+sound.Volume = 2.5
+sound.PlaybackSpeed = 1
+sound.Looped = false
+sound:Play()
+
+local args = {
+    [1] = "TOPIMPORTANT_VFXEMITEER",
+    [2] = game:GetService("ReplicatedStorage"):WaitForChild("VFX"):WaitForChild("Sukuna"):WaitForChild("CleaveCharge"):WaitForChild("DashSmoke"),
+    [3] = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
             end
 end)
 
