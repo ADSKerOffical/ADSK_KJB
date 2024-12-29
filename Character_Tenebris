@@ -48,7 +48,7 @@ loop = Instance.new("Sound", box)
 loop.SoundId = "rbxassetid://2585316537"
 loop.Volume = 2
 loop.PlaybackSpeed = 1
-loop.Looped = true
+loop.Looped = false
 loop:Play()
 
 box.Touched:Connect(function(hit)
@@ -146,7 +146,7 @@ sel.Adornee = box
 
 local bodyVel = Instance.new("BodyVelocity", box)
 bodyVel.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
-bodyVel.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector * 30
+bodyVel.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector * 22.5
  task.wait(1.5)
 bodyVel:Destroy()
 sel:Destroy()
