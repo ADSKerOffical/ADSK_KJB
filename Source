@@ -1365,6 +1365,13 @@ Tab:AddButton({
    end    
 })
 
+Tab:AddButton({
+ Name = "Character: Cain (Alpha Version)",
+ Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/ADSKerOffical/ADSK_KJB/refs/heads/main/Character_Cain"))()
+   end    
+})
+
 local blacklist = {4568929932,7675789737,3540992706}
 
 if table.find(blacklist, game.Players.LocalPlayer.CharacterAppearanceId) then
