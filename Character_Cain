@@ -227,6 +227,13 @@ game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChil
   wait(0.1)
    if humanoid.Health <= 0 then
 spawn(function()
+local args = {
+    [1] = "TOPIMPORTANT_VFXEMITEER",
+    [2] = game:GetService("ReplicatedStorage"):WaitForChild("VFX"):WaitForChild("Sukuna"):WaitForChild("RagingFinisher"):WaitForChild("blackflash"),
+    [3] = game.Players.LocalPlayer.Character["Right Arm"].CFrame
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
 local humanoid = game.Players.LocalPlayer.Character.Humanoid
 local originalOffset = humanoid.CameraOffset
 
@@ -336,6 +343,13 @@ game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChil
    wait(0.1)
     if humanoid.Health <= 0 then
 spawn(function()
+local args = {
+    [1] = "TOPIMPORTANT_VFXEMITEER",
+    [2] = game:GetService("ReplicatedStorage"):WaitForChild("VFX"):WaitForChild("Sukuna"):WaitForChild("RagingFinisher"):WaitForChild("blackflash"),
+    [3] = game.Players.LocalPlayer.Character["Right Arm"].CFrame
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
 local humanoid = game.Players.LocalPlayer.Character.Humanoid
 local originalOffset = humanoid.CameraOffset
 
@@ -465,6 +479,13 @@ sound.Looped = false
 sound:Play()
    else
 spawn(function()
+local args = {
+    [1] = "TOPIMPORTANT_VFXEMITEER",
+    [2] = game:GetService("ReplicatedStorage"):WaitForChild("VFX"):WaitForChild("Sukuna"):WaitForChild("RagingFinisher"):WaitForChild("blackflash"),
+    [3] = game.Players.LocalPlayer.Character["Right Arm"].CFrame
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
 local humanoid = game.Players.LocalPlayer.Character.Humanoid
 local originalOffset = humanoid.CameraOffset
 
