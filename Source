@@ -1359,16 +1359,23 @@ Tab:AddButton({
 })
 
 Tab:AddButton({
- Name = "Character: Tenebris (Beta version)",
+ Name = "Character: Tenebris (Beta Version)",
  Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/ADSKerOffical/ADSK_KJB/refs/heads/main/Character_Tenebris"))()
    end    
 })
 
 Tab:AddButton({
- Name = "Character: Cain (Alpha Version)",
+ Name = "Character: Cain (Beta Version)",
  Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/ADSKerOffical/ADSK_KJB/refs/heads/main/Character_Cain"))()
+   end    
+})
+
+Tab:AddButton({
+ Name = "Character: Lumen (Alpha Version)",
+ Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/ADSKerOffical/ADSK_KJB/refs/heads/main/Character_Lumen"))()
    end    
 })
 
