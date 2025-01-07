@@ -1032,6 +1032,314 @@ game.Players.LocalPlayer:SetAttribute("CanUsingTools", true)
 end)
 
 tool.Parent = game.Players.LocalPlayer.Backpack
+
+local tool = Instance.new("Tool")
+tool.Name = "Second wind"
+tool.ToolTip = "I havent come up with an animation yet"
+tool.RequiresHandle = false
+
+local function tools2()
+local tool = Instance.new("Tool")
+tool.Name = "Ravaging Slash"
+tool.RequiresHandle = false
+
+local lastPressTime = 0
+tool.Activated:Connect(function()
+  local currentTime = tick()
+            if currentTime - lastPressTime >= 5 then
+                lastPressTime = currentTime 
+   pcall(function()
+sword.Transparency = 1
+back.Transparency = 0
+game.Players.LocalPlayer:SetAttribute("NoHit", true)
+game.Players.LocalPlayer:SetAttribute("MSlowed", true)
+game.Players.LocalPlayer:SetAttribute("CanUsingTools", false)
+   end)
+   
+  local args = {
+    [1] = "ChangeTojiWapeon",
+    [2] = ""
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+
+local Anim = Instance.new("Animation")
+Anim.AnimationId = "rbxassetid://17751574832"
+local k = game:GetService("Players").LocalPlayer.Character.Humanoid:LoadAnimation(Anim)
+k:Play()
+k:AdjustSpeed(1)
+  task.wait(1)
+local circle = Instance.new("MeshPart", workspace)
+circle.Anchored = true
+circle.MeshId = "rbxassetid://3270017"
+circle.Color = Color3.new(1, 1, 1)
+circle.Material = "Neon"
+circle.CanCollide = false
+circle.Size = Vector3.zero
+circle.Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
+circle.CFrame = circle.CFrame * CFrame.Angles(math.rad(90), 0, 0)
+game.Debris:AddItem(circle, 4)
+
+sound = Instance.new("Sound", game.Workspace)
+sound.SoundId = "rbxassetid://7545764969" 
+sound.Volume = 1
+sound.PlaybackSpeed = 1
+sound.Looped = false
+sound:Play()
+
+sound = Instance.new("Sound", game.Players.LocalPlayer.Character.HumanoidRootPart)
+sound.SoundId = "rbxassetid://1837829564"
+sound.Volume = 2
+sound.PlaybackSpeed = 0.9
+sound.Looped = false
+sound:Play()
+
+sound = Instance.new("Sound", game.Players.LocalPlayer.Character.HumanoidRootPart)
+sound.SoundId = "rbxassetid://18313528958"
+sound.Volume = 2
+sound.PlaybackSpeed = 1
+sound.Looped = false
+sound:Play()
+
+spawn(function()
+local humanoid = game.Players.LocalPlayer.Character.Humanoid
+local originalOffset = humanoid.CameraOffset
+
+local startShakeIntensity = 30
+local shakeSpeed = 0.01
+local shakeDuration = 30
+
+for i = 1, shakeDuration do
+ task.wait()
+ local shakeIntensity = startShakeIntensity * (1 - (i-1)/shakeDuration)
+    local shakeOffset = Vector3.new(
+     math.random(-shakeIntensity, shakeIntensity) / 10,
+        math.random(-shakeIntensity, shakeIntensity) / 10,
+        math.random(-shakeIntensity, shakeIntensity) / 10
+ )
+ local originalOffset = humanoid.CameraOffset
+ local currentTime = 0
+ local duration = shakeSpeed
+ while currentTime < duration do
+     local delta = currentTime/duration
+     humanoid.CameraOffset = originalOffset + shakeOffset * (1 - delta)
+     currentTime = currentTime + task.wait(0.025)
+ end
+ humanoid.CameraOffset = Vector3.new(0, 0, 0)
+end
+end)
+
+local args = {
+    [1] = "MainModuleFUNCTIONN",
+    [2] = "DestrouctionSystem",
+    [3] = Vector3.new(200, 200, 200),
+    [4] = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+
+local foundHumanoids = {}
+Usuario = game.Players.LocalPlayer
+for _, v in pairs(workspace:GetDescendants()) do
+    if v:IsA("Humanoid") and v.RootPart and v.RootPart.Parent ~= Usuario.Character then
+        local distance = (v.RootPart.Position - Usuario.Character.HumanoidRootPart.Position).magnitude
+        if distance <= 100 then
+            table.insert(foundHumanoids, v)
+        end
+    end
+end
+
+for _, humanoid in pairs(foundHumanoids) do
+ local args = {
+    [1] = "RuthlessRoarHittt",
+    [2] = workspace:WaitForChild(humanoid.Parent.Name),
+    [3] = 53475753578654310,
+    [4] = 300,
+    [5] = 80,
+    [6] = 0.5
+ }
+
+ game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+end 
+
+partTweenn2 = game:GetService("TweenService"):Create(circle, TweenInfo.new(1, Enum.EasingStyle.Exponential), {
+        Transparency = 1,
+        Size = Vector3.new(500, 500, 35)
+    })
+    partTweenn2:Play()
+ pcall(function()
+game.Players.LocalPlayer:SetAttribute("NoHit", false)
+game.Players.LocalPlayer:SetAttribute("MSlowed", false)
+game.Players.LocalPlayer:SetAttribute("CanUsingTools", true)
+ end)
+            end
+end)
+
+tool.Parent = game.Players.LocalPlayer.Backpack
+
+local tool = Instance.new("Tool")
+tool.Name = "Bloodbath" 
+tool.ToolTip = "For this attack, Cain sacrifices his health"
+tool.RequiresHandle = false
+
+local function dmg(damage, knockback, range)
+ local foundHumanoids = {}
+Usuario = game.Players.LocalPlayer
+for _, v in pairs(workspace:GetDescendants()) do
+    if v:IsA("Humanoid") and v.RootPart and v.RootPart.Parent ~= Usuario.Character then
+        local distance = (v.RootPart.Position - Usuario.Character.HumanoidRootPart.Position).magnitude
+        if distance <= range then
+            table.insert(foundHumanoids, v)
+        end
+    end
+end
+
+  for _, humanoid in pairs(foundHumanoids) do
+local args = {
+    [1] = "RuthlessRoarHittt",
+    [2] = workspace:WaitForChild(humanoid.Parent.Name),
+    [3] = 53475753578654310,
+    [4] = knockback, -- kd
+    [5] = damage, -- dmg
+    [6] = 0.5
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+  end 
+end
+
+local function effect()
+  local args = {
+    [1] = "RuthlessLasttSlashh",
+    [2] = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -4)
+  }
+
+  game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+end
+
+local function hself(val)
+  local args = {
+    [1] = "HitSelfff",
+    [2] = val
+  }
+
+  game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+end
+
+local function cutterrain(size)
+ local args = {
+    [1] = "MainModuleFUNCTIONN",
+    [2] = "DestrouctionSystem",
+    [3] = size,
+    [4] = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+ }
+
+ game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+end
+
+local lastPressTime = 0
+tool.Activated:Connect(function()
+  local currentTime = tick()
+            if currentTime - lastPressTime >= 12 then
+                lastPressTime = currentTime 
+  pcall(function()
+game.Players.LocalPlayer:SetAttribute("NoHit", true)
+game.Players.LocalPlayer:SetAttribute("MSlowed", true)
+game.Players.LocalPlayer:SetAttribute("CanUsingTools", false)
+  end)
+local Anim = Instance.new("Animation")
+Anim.AnimationId = "rbxassetid://79396764673442"
+local k = game:GetService("Players").LocalPlayer.Character.Humanoid:LoadAnimation(Anim)
+k:Play()
+k:AdjustSpeed(1)
+
+local args = {
+    [1] = "Play",
+    [2] = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.RootAttachment.Ruthless1,
+    [3] = "Ruthless1"
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+
+local args = {
+    [1] = "Play",
+    [2] = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.RootAttachment.Ruthless2,
+    [3] = "Ruthless2"
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+ task.wait(0.5)
+spawn(function()
+   for i = 1, 5 do
+local args = {
+    [1] = "Chain of a thousand MilesGOOOO"
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+dmg(10, 200, 30)
+hself(1)
+     task.wait(0.05)
+   end
+end)
+ task.wait(1.5)
+pcall(function()
+ sword.Transparency = 0
+ back.Transparency = 1
+end)
+
+local args = {
+    [1] = "ChangeTojiWapeon",
+    [2] = "MeguminSword"
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+
+ for i = 0, 4 do
+effect()
+hself(1.5)
+dmg(30 + i * 10, 60 + i * 10, 35)
+cutterrain(Vector3.new(50, 50, 50))
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame *= CFrame.new(0, 0, -(20 + i * 3))
+game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector * (100 + i * 20)
+   task.wait(0.4)
+ end
+ task.wait(0.8)
+dmg(200, 300, 60)
+hself(4)
+cutterrain(Vector3.new(100, 100, 100))
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame *= CFrame.new(0, 0, -40)
+game.Players.LocalPlayer.Character.HumanoidRootPart.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector * 200
+
+local args = {
+    [1] = "RuthlessLasttSlashh",
+    [2] = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -4)
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+
+ pcall(function()
+game.Players.LocalPlayer:SetAttribute("NoHit", false)
+game.Players.LocalPlayer:SetAttribute("MSlowed", false)
+game.Players.LocalPlayer:SetAttribute("CanUsingTools", true)
+ end)
+            end
+end)
+
+tool.Parent = game.Players.LocalPlayer.Backpack
+end
+
+tool.Activated:Connect(function()
+tool:Destroy()
+  tools2()
+  local args = {
+    [1] = "ClairvoyanceAddAura",
+    [2] = workspace:WaitForChild(game.Players.LocalPlayer.Name)
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+end)
+
+tool.Parent = game.Players.LocalPlayer.Backpack
 end
 
 tool.Activated:Connect(function()
