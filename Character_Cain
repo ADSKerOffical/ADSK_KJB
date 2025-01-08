@@ -27,6 +27,7 @@ tool:Destroy()
  game.Players.LocalPlayer:SetAttribute("NoHit", false)
  game.Players.LocalPlayer:SetAttribute("MSlowed", false)
  game.Players.LocalPlayer:SetAttribute("CanUsingTools", true)
+ game.Players.LocalPlayer:SetAttribute("IsAwak", false)
  
  game.Players.LocalPlayer:GetAttributeChangedSignal("NoHit"):Connect(function()
 local noh = game.Players.LocalPlayer:GetAttribute("NoHit")
@@ -159,6 +160,14 @@ local partTweenn2 = game:GetService("TweenService"):Create(game.Players.LocalPla
         CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -25)
     })
     partTweenn2:Play()
+ task.wait(0.05)
+local args = {
+    [1] = "TOPIMPORTANT_VFXEMITEER",
+    [2] = game:GetService("ReplicatedStorage"):WaitForChild("VFX"):WaitForChild("Sukuna"):WaitForChild("CleaveDance"):WaitForChild("TP"),
+    [3] = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
             end
 end)
 
@@ -285,11 +294,39 @@ sound:Play()
  for i = 1, 3 do
 local args = {
     [1] = "SweepKickKick",
-    [2] = workspace:WaitForChild(humanoid.Parent.Name)
+    [2] = humanoid.Parent
 }
 
 game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
  end
+   if game.Players.LocalPlayer:GetAttribute("IsAwak") == true then
+local args = {
+    [1] = "TOPIMPORTANT_VFXEMITEER",
+    [2] = game:GetService("ReplicatedStorage"):WaitForChild("VFX"):WaitForChild("Sukuna"):WaitForChild("RagingFinisher"):WaitForChild("blackflash"),
+    [3] = game.Players.LocalPlayer.Character["Right Arm"].CFrame
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+
+sound = Instance.new("Sound", game.Players.LocalPlayer.Character.HumanoidRootPart)
+sound.SoundId = "rbxassetid://120966577361845"
+sound.Volume = 2.5
+sound.PlaybackSpeed = 1
+sound.TimePosition = 1.95
+sound.Looped = false
+sound:Play()
+
+local args = {
+    [1] = "RuthlessRoarHittt",
+    [2] = humanoid.Parent,
+    [3] = 53475753578654310,
+    [4] = 100,
+    [5] = 20,
+    [6] = 1
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+   end
   task.wait(0.15)
    if humanoid.Health <= 0 then
 spawn(function()
@@ -411,6 +448,35 @@ local args = {
 }
 
 game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+
+   if game.Players.LocalPlayer:GetAttribute("IsAwak") == true then
+local args = {
+    [1] = "TOPIMPORTANT_VFXEMITEER",
+    [2] = game:GetService("ReplicatedStorage"):WaitForChild("VFX"):WaitForChild("Sukuna"):WaitForChild("RagingFinisher"):WaitForChild("blackflash"),
+    [3] = game.Players.LocalPlayer.Character["Right Arm"].CFrame
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+
+sound = Instance.new("Sound", game.Players.LocalPlayer.Character.HumanoidRootPart)
+sound.SoundId = "rbxassetid://120966577361845"
+sound.Volume = 2.5
+sound.PlaybackSpeed = 1
+sound.TimePosition = 1.95
+sound.Looped = false
+sound:Play()
+
+local args = {
+    [1] = "RuthlessRoarHittt",
+    [2] = humanoid.Parent,
+    [3] = 53475753578654310,
+    [4] = 155, 
+    [5] = 25,
+    [6] = 2
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+   end
  end
    task.wait(0.15)
     if humanoid.Health <= 0 then
@@ -546,6 +612,29 @@ for i = 1, 2 do
   game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
 end
 
+if game.Players.LocalPlayer:GetAttribute("IsAwak") == true then
+   if i % 3 == 0 then
+ local args = {
+    [1] = "TOPIMPORTANT_VFXEMITEER",
+    [2] = game:GetService("ReplicatedStorage"):WaitForChild("VFX"):WaitForChild("Sukuna"):WaitForChild("RagingFinisher"):WaitForChild("blackflash"),
+    [3] = game.Players.LocalPlayer.Character["Right Arm"].CFrame
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+  end
+
+local args = {
+    [1] = "RuthlessRoarHittt",
+    [2] = humanoid.Parent,
+    [3] = 53475753578654310,
+    [4] = 0,
+    [5] = 10,
+    [6] = 1
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+end
+
 sound = Instance.new("Sound", humanoid.RootPart)
 sound.SoundId = "rbxassetid://9075325599"
 sound.Volume = 0.75
@@ -614,6 +703,49 @@ sound:Play()
 end
   task.wait()
 end
+
+ if game.Players.LocalPlayer:GetAttribute("IsAwak") == true then
+local foundHumanoids = {}
+Usuario = game.Players.LocalPlayer
+for _, v in pairs(workspace:GetDescendants()) do
+    if v:IsA("Humanoid") and v.RootPart and v.RootPart.Parent ~= Usuario.Character then
+        local distance = (v.RootPart.Position - Usuario.Character.HumanoidRootPart.Position).magnitude
+        if distance <= 12 then
+            table.insert(foundHumanoids, v)
+        end
+    end
+end
+
+   for _, humanoid in pairs(foundHumanoids) do
+local args = {
+    [1] = "RuthlessRoarHittt",
+    [2] = workspace:WaitForChild(humanoid.Parent.Name),
+    [3] = 53475753578654310,
+    [4] = 200,
+    [5] = 45,
+    [6] = 1.5
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+
+sound = Instance.new("Sound", game.Players.LocalPlayer.Character.HumanoidRootPart)
+sound.SoundId = "rbxassetid://120966577361845"
+sound.Volume = 2.5
+sound.PlaybackSpeed = 1
+sound.TimePosition = 1.95
+sound.Looped = false
+sound:Play()
+
+local args = {
+    [1] = "TOPIMPORTANT_VFXEMITEER",
+    [2] = game:GetService("ReplicatedStorage"):WaitForChild("VFX"):WaitForChild("Sukuna"):WaitForChild("RagingFinisher"):WaitForChild("blackflash"),
+    [3] = game.Players.LocalPlayer.Character["Right Arm"].CFrame
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+   end 
+ end
+
 game.Players.LocalPlayer:SetAttribute("NoHit", false)
 game.Players.LocalPlayer:SetAttribute("MSlowed", false)
 game.Players.LocalPlayer:SetAttribute("CanUsingTools", true)
@@ -621,10 +753,6 @@ game.Players.LocalPlayer:SetAttribute("CanUsingTools", true)
 end)
 
 tool.Parent = game.Players.LocalPlayer.Backpack
-
-local tool = Instance.new("Tool")
-tool.Name = "Sword of Doomsday"
-tool.RequiresHandle = false
 
 local function tools()
 local tool = Instance.new("Tool")
@@ -644,6 +772,10 @@ spawn(function()
   slash.CFrame = character.Humanoid.RootPart.CFrame
   slash.CFrame = slash.CFrame * CFrame.Angles(math.rad(math.random(-360, 360)), 0, math.rad(math.random(-360, 360)))
   game.Debris:AddItem(slash, 0.7)
+  
+   if game.Players.LocalPlayer:GetAttribute("IsAwak") == true then
+slash.Color = Color3.new(0.7, 0, 0)
+   end
   
   partTweenn2 = game:GetService("TweenService"):Create(slash, TweenInfo.new(0.5, Enum.EasingStyle.Exponential), {
         Size = Vector3.new(20, 0.1, 0.1)
@@ -702,9 +834,7 @@ for _, v in pairs(workspace:GetDescendants()) do
 end
 
 for _, humanoid in pairs(foundHumanoids) do
-    if humanoid.Health <= 0 then
- breakJ(humanoid.Parent)
-    end
+  pcall(function()
 slashan(humanoid.Parent)
   for i = 1, 2 do
  local args = {
@@ -715,7 +845,20 @@ slashan(humanoid.Parent)
 
 game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
   end
-end
+    if game.Players.LocalPlayer:GetAttribute("IsAwak") == true then
+ local args = {
+    [1] = "RuthlessRoarHittt",
+    [2] = workspace:WaitForChild(humanoid.Parent.Name),
+    [3] = 53475753578654310,
+    [4] = 0,
+    [5] = 7,
+    [6] = 0
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+    end
+ end)
+  end
    task.wait(0.03)
  end
 game.Players.LocalPlayer:SetAttribute("NoHit", false)
@@ -741,15 +884,26 @@ for _, v in pairs(workspace:GetDescendants()) do
 end
 
 for _, humanoid in pairs(foundHumanoids) do
-  if humanoid.Health <= 0 then
-breakJ(humanoid.Parent)
-  end
+ pcall(function()
  local args = {
     [1] = "SweepKickKick",
     [2] = workspace:WaitForChild(humanoid.Parent.Name)
 }
 
 game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+  if game.Players.LocalPlayer:GetAttribute("IsAwak") == true then
+local args = {
+    [1] = "RuthlessRoarHittt",
+    [2] = workspace:WaitForChild(humanoid.Parent.Name),
+    [3] = 53475753578654310,
+    [4] = 100,
+    [5] = 15,
+    [6] = 0.5
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+  end
+ end)
 end
             end
 end)
@@ -761,6 +915,21 @@ tool.Name = "Hail of cuts"
 tool.RequiresHandle = false
 
 local function damag(sond)
+  if game.Players.LocalPlayer:GetAttribute("IsAwak") == false then
+local args = {
+  [1] = "DarkSurgeSlashhh"
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+   else
+local args = {
+  [1] = "TOPIMPORTANT_VFXEMITEER",
+  [2] = game.ReplicatedStorage.VFX.Sukuna.CravingCombaination.Hit,
+  [3] = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, 3)
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+  end
  local foundHumanoids = {}
 Usuario = game.Players.LocalPlayer
 for _, v in pairs(workspace:GetDescendants()) do
@@ -773,25 +942,31 @@ for _, v in pairs(workspace:GetDescendants()) do
 end
 
   for _, humanoid in pairs(foundHumanoids) do
-     if humanoid.Health <= 0 then
-breakJ(humanoid.Parent)
-     end
+    pcall(function()
     for i = 1, 5 do
 local args = {
     [1] = "DarkSurgeHitttttt",
-    [2] = workspace:WaitForChild(humanoid.Parent.Name),
+    [2] = humanoid.Parent,
     [3] = 384923741622
 }
 
 game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
-    end
   end 
   
- local args = {
-    [1] = "DarkSurgeSlashhh"
+if game.Players.LocalPlayer:GetAttribute("IsAwak") == true then
+local args = {
+    [1] = "RuthlessRoarHittt",
+    [2] = workspace:WaitForChild(humanoid.Parent.Name),
+    [3] = 53475753578654310,
+    [4] = 75,
+    [5] = 15,
+    [6] = 1
 }
 
 game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+end
+  end)
+end
 
   if sond == 1 then
 sound = Instance.new("Sound", game.Players.LocalPlayer.Character.HumanoidRootPart)
@@ -808,7 +983,7 @@ sound.PlaybackSpeed = 1
 sound.Looped = false
 sound:Play()
   end
-end
+ end
 
 local lastPressTime = 0
 tool.Activated:Connect(function()
@@ -916,12 +1091,14 @@ for _, v in pairs(workspace:GetDescendants()) do
 end
 
 for _, humanoid in pairs(foundHumanoids) do
+  pcall(function()
 local args = {
     [1] = "BoulderCrushStunCharrr",
     [2] = workspace:WaitForChild(humanoid.Parent.Name)
 }
 
 game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+   end)
 end 
 
 local circle = Instance.new("MeshPart", workspace)
@@ -934,6 +1111,10 @@ circle.Size = Vector3.zero
 circle.Position = game.Players.LocalPlayer.Character.HumanoidRootPart.Position
 circle.CFrame = circle.CFrame * CFrame.Angles(math.rad(90), 0, 0)
 game.Debris:AddItem(circle, 4)
+
+ if game.Players.LocalPlayer:GetAttribute("IsAwak") == true then
+circle.Color = Color3.new(0.7, 0, 0)
+ end
 
 local partTweenn2 = game:GetService("TweenService"):Create(circle, TweenInfo.new(0.3, Enum.EasingStyle.Circular), {
         Size = Vector3.new(100, 100, 10)
@@ -999,6 +1180,7 @@ for _, v in pairs(workspace:GetDescendants()) do
 end
 
 for _, humanoid in pairs(foundHumanoids) do
+  pcall(function()
 local args = {
     [1] = "BoulderCrushUNNNStunCharrr",
     [2] = workspace:WaitForChild(humanoid.Parent.Name)
@@ -1024,6 +1206,27 @@ local args = {
 
 game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
   end
+    if game.Players.LocalPlayer:GetAttribute("IsAwak") == true then
+local args = {
+    [1] = "TOPIMPORTANT_VFXEMITEER",
+    [2] = game:GetService("ReplicatedStorage"):WaitForChild("VFX"):WaitForChild("Sukuna"):WaitForChild("CravingCombaination"):WaitForChild("Hit"),
+    [3] = humanoid.RootPart.CFrame
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+
+local args = {
+    [1] = "RuthlessRoarHittt",
+    [2] = workspace:WaitForChild(humanoid.Parent.Name),
+    [3] = 53475753578654310,
+    [4] = 200,
+    [5] = 35,
+    [6] = 1
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args)) 
+    end
+ end)
 end 
 game.Players.LocalPlayer:SetAttribute("NoHit", false)
 game.Players.LocalPlayer:SetAttribute("MSlowed", false)
@@ -1243,10 +1446,20 @@ tool.Activated:Connect(function()
             if currentTime - lastPressTime >= 12 then
                 lastPressTime = currentTime 
   pcall(function()
+sword.Transparency = 1
+back.Transparency = 0
 game.Players.LocalPlayer:SetAttribute("NoHit", true)
 game.Players.LocalPlayer:SetAttribute("MSlowed", true)
 game.Players.LocalPlayer:SetAttribute("CanUsingTools", false)
   end)
+  
+  local args = {
+    [1] = "ChangeTojiWapeon",
+    [2] = ""
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+
 local Anim = Instance.new("Animation")
 Anim.AnimationId = "rbxassetid://79396764673442"
 local k = game:GetService("Players").LocalPlayer.Character.Humanoid:LoadAnimation(Anim)
@@ -1337,10 +1550,384 @@ tool:Destroy()
 }
 
 game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+
+local Highlight = Instance.new("Highlight")
+Highlight.Parent = game.Players.LocalPlayer.Character
+Highlight.Enabled = true
+Highlight.Adornee = game.Players.LocalPlayer.Character
+Highlight.FillTransparency = 0.9
+Highlight.FillColor = Color3.fromRGB(128, 0, 0)
+Highlight.OutlineColor = Color3.fromRGB(128, 0, 0)
+Highlight.OutlineTransparency = 0.3
+Highlight.DepthMode = "Occluded"
+ game.Players.LocalPlayer:SetAttribute("IsAwak", true)
 end)
 
 tool.Parent = game.Players.LocalPlayer.Backpack
 end
+
+local tool = Instance.new("Tool")
+tool.Name = "Cutting Punch"
+tool.RequiresHandle = false 
+
+local lastPressTime = 0
+tool.Activated:Connect(function()
+  local currentTime = tick()
+            if currentTime - lastPressTime >= 4 then
+                lastPressTime = currentTime 
+    pcall(function()
+  sword.Transparency = 1
+  back.Transparency = 0
+ game.Players.LocalPlayer:SetAttribute("NoHit", true)
+ game.Players.LocalPlayer:SetAttribute("MSlowed", true)
+ game.Players.LocalPlayer:SetAttribute("CanUsingTools", false)
+    end)
+    
+    local args = {
+    [1] = "ChangeTojiWapeon",
+    [2] = ""
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+    
+local Anim = Instance.new("Animation")
+Anim.AnimationId = "rbxassetid://109303284105672"
+local k = game:GetService("Players").LocalPlayer.Character.Humanoid:LoadAnimation(Anim)
+k:Play()
+k:AdjustSpeed(0.5)
+  task.wait(0.2)
+sound = Instance.new("Sound", game.Players.LocalPlayer.Character.HumanoidRootPart)
+sound.SoundId = "rbxassetid://5713085119"
+sound.Volume = 2
+sound.PlaybackSpeed = 1
+sound.Looped = false
+sound:Play()
+
+local args = {
+  [1] = "TOPIMPORTANT_VFXEMITEER",
+  [2] = game.ReplicatedStorage.VFX.Sukuna.CravingCombaination.Hit,
+  [3] = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -6)
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+
+local foundHumanoids = {}
+local radius = 10
+local player = game.Players.LocalPlayer
+local origin = player.Character.HumanoidRootPart.Position
+local direction = player.Character.HumanoidRootPart.CFrame.LookVector
+
+for _, v in pairs(workspace:GetDescendants()) do
+    if v:IsA("Humanoid") and v.RootPart and v.RootPart.Parent ~= player.Character then
+        local humanoidPosition = v.RootPart.Position
+        local toHumanoid = humanoidPosition - origin
+        local distance = toHumanoid.magnitude
+        local angle = math.acos(toHumanoid.Unit:Dot(direction))
+
+        if distance <= 12 and angle < math.rad(30) then
+            table.insert(foundHumanoids, v)
+        end
+    end
+end
+
+for _, humanoid in pairs(foundHumanoids) do
+  local args = {
+    [1] = "RuthlessRoarHittt",
+    [2] = workspace:WaitForChild(humanoid.Parent.Name),
+    [3] = 53475753578654310,
+    [4] = 75,
+    [5] = 25,
+    [6] = 1
+  }
+
+  game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+     spawn(function()
+ for i = 1, 10 do
+ local args = {
+  [1] = "TOPIMPORTANT_VFXEMITEER",
+  [2] = game.ReplicatedStorage.VFX.Sukuna.CravingCombaination.Hit,
+  [3] = humanoid.RootPart.CFrame * CFrame.Angles(math.rad(math.random(-360, 360)), math.rad(math.random(-360, 360)), math.rad(math.random(-360, 360)))
+ }
+
+ game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+
+sound = Instance.new("Sound", humanoid.RootPart)
+sound.SoundId = "rbxassetid://6881026094"
+sound.Volume = 1.5
+sound.PlaybackSpeed = 1
+sound.Looped = false
+sound:Play()
+
+local dma = 2
+ if game.Players.LocalPlayer:GetAttribute("IsAwak") == true then
+dma = 5
+   else
+dma = 2
+ end
+
+ local args = {
+    [1] = "RuthlessRoarHittt",
+    [2] = workspace:WaitForChild(humanoid.Parent.Name),
+    [3] = 53475753578654310,
+    [4] = 20,
+    [5] = dma,
+    [6] = 0.2
+ }
+
+ game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+   task.wait(0.1)
+ end
+     end)
+end
+  task.wait(0.7)
+      pcall(function()
+game.Players.LocalPlayer:SetAttribute("NoHit", false)
+game.Players.LocalPlayer:SetAttribute("MSlowed", false)
+game.Players.LocalPlayer:SetAttribute("CanUsingTools", true)
+      end)
+            end
+end)
+
+tool.Parent = game.Players.LocalPlayer.Backpack
+
+local tool = Instance.new("Tool")
+tool.Name = "Flash Bang"
+tool.RequiresHandle = false
+
+local function playsound(id, parent)
+sound = Instance.new("Sound", parent)
+sound.SoundId = "rbxassetid://" .. tostring(id)
+sound.Volume = 1.5
+sound.PlaybackSpeed = 1
+sound.Looped = false
+sound:Play()
+end
+
+local lastPressTime = 0
+tool.Activated:Connect(function()
+  local currentTime = tick()
+            if currentTime - lastPressTime >= 3 then
+                lastPressTime = currentTime 
+pcall(function()
+ back.Transparency = 0
+ sword.Transparency = 1
+ game.Players.LocalPlayer:SetAttribute("NoHit", true)
+ game.Players.LocalPlayer:SetAttribute("MSlowed", true)
+ game.Players.LocalPlayer:SetAttribute("CanUsingTools", false)
+end)
+
+local args = {
+    [1] = "ChangeTojiWapeon",
+    [2] = ""
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+
+local Anim = Instance.new("Animation")
+Anim.AnimationId = "rbxassetid://76715054152443"
+local k = game:GetService("Players").LocalPlayer.Character.Humanoid:LoadAnimation(Anim)
+k:Play()
+k:AdjustSpeed(1)
+  task.wait(0.3)
+ playsound(5835032207, game.Players.LocalPlayer.Character.HumanoidRootPart)
+local closestDistance = math.huge
+local closestHumanoid = nil
+local Usuario = game.Players.LocalPlayer
+
+  for _, v in pairs(workspace:GetDescendants()) do
+    if v:IsA("Humanoid") and v.RootPart and v.RootPart.Parent ~= Usuario.Character and v.Health > 0 then
+      local distance = (v.RootPart.Position - Usuario.Character.HumanoidRootPart.Position).magnitude
+        if distance < closestDistance and distance <= 10 then
+             closestDistance = distance
+             closestHumanoid = v
+        end
+     end
+  end
+
+if closestHumanoid and closestHumanoid.Health > 0 then
+  if closestHumanoid.Health <= 0 then return end
+ playsound(3201554385, game.Players.LocalPlayer.Character.HumanoidRootPart)
+   spawn(function()
+repeat wait()
+  if closestHumanoid.Health <= 0 then
+game.Players.LocalPlayer.Character.Humanoid.AutoRotate = true
+game.Players.LocalPlayer:SetAttribute("NoHit", false)
+game.Players.LocalPlayer:SetAttribute("MSlowed", false)
+game.Players.LocalPlayer:SetAttribute("CanUsingTools", true)
+  end
+until closestHumanoid.Health <= 0
+   end)
+   
+local K1 = 275
+local D1 = 20
+local D2 = 5
+local D3 = 2.5
+local K2 = 230
+local D4 = 25
+   
+ if game.Players.LocalPlayer:GetAttribute("IsAwak") == true then
+  K1 = 350
+  D1 = 35
+  D2 = 8
+  D3 = 3
+  K2 = 345
+  D4 = 35
+ end
+ 
+local args = {
+    [1] = "RuthlessRoarHittt",
+    [2] = workspace:WaitForChild(closestHumanoid.Parent.Name),
+    [3] = 53475753578654310,
+    [4] = K1,
+    [5] = D1,
+    [6] = 1.5
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+   if game.Players.LocalPlayer:GetAttribute("IsAwak") == true then
+local args = {
+    [1] = "TOPIMPORTANT_VFXEMITEER",
+    [2] = game:GetService("ReplicatedStorage"):WaitForChild("VFX"):WaitForChild("Sukuna"):WaitForChild("RagingFinisher"):WaitForChild("blackflash"),
+    [3] = game.Players.LocalPlayer.Character["Right Leg"].CFrame
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+   end
+ task.wait(0.5)
+   if closestHumanoid.Health > 0 then
+ repeat wait() until closestHumanoid.RootPart.Velocity.Magnitude <= 1 or closestHumanoid.Health <= 0
+ game.Players.LocalPlayer.Character.Humanoid.AutoRotate = false
+local Anim = Instance.new("Animation")
+Anim.AnimationId = "rbxassetid://104240687221181"
+local k = game:GetService("Players").LocalPlayer.Character.Humanoid:LoadAnimation(Anim)
+k:Play()
+k:AdjustSpeed(1)
+  task.wait(0.3)
+local partTweenn2 = game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0.04, Enum.EasingStyle.Exponential), {
+        CFrame = closestHumanoid.RootPart.CFrame * CFrame.new(0, 0, 3)
+    })
+    partTweenn2:Play()
+  task.wait(0.08)   
+local args = {
+    [1] = "TOPIMPORTANT_VFXEMITEER",
+    [2] = game:GetService("ReplicatedStorage"):WaitForChild("VFX"):WaitForChild("Sukuna"):WaitForChild("CleaveDance"):WaitForChild("TP"),
+    [3] = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+  end
+ for i = 1, 2 do
+   if closestHumanoid.Health <= 0 then return end
+local Anim = Instance.new("Animation")
+Anim.AnimationId = "rbxassetid://17842945529"
+local k = game:GetService("Players").LocalPlayer.Character.Humanoid:LoadAnimation(Anim)
+k:Play()
+k:AdjustSpeed(1)
+  task.wait(0.25)
+ local args = {
+    [1] = "RuthlessRoarHittt",
+    [2] = workspace:WaitForChild(closestHumanoid.Parent.Name),
+    [3] = 53475753578654310,
+    [4] = 0,
+    [5] = D2,
+    [6] = 1
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+playsound(159504677, closestHumanoid.RootPart)
+
+    if game.Players.LocalPlayer:GetAttribute("IsAwak") == true then
+local args = {
+    [1] = "TOPIMPORTANT_VFXEMITEER",
+    [2] = game:GetService("ReplicatedStorage"):WaitForChild("VFX"):WaitForChild("Sukuna"):WaitForChild("RagingFinisher"):WaitForChild("blackflash"),
+    [3] = game.Players.LocalPlayer.Character["Right Arm"].CFrame
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+    end
+  task.wait(0.15)
+end
+  local Anim = Instance.new("Animation")
+Anim.AnimationId = "rbxassetid://75696593697191"
+local k = game:GetService("Players").LocalPlayer.Character.Humanoid:LoadAnimation(Anim)
+k:Play()
+k:AdjustSpeed(1)
+   task.wait(0.25)
+   
+ task.delay(0.35, function()
+pcall(function()
+  game.Players.LocalPlayer.Character.Humanoid.AutoRotate = true
+  game.Players.LocalPlayer:SetAttribute("NoHit", false)
+  game.Players.LocalPlayer:SetAttribute("MSlowed", false)
+  game.Players.LocalPlayer:SetAttribute("CanUsingTools", true)
+end)
+ end)
+
+   spawn(function()
+for i = 1, 10 do
+ if closestHumanoid.Health <= 0 then return end
+   pcall(function()
+ slashan(closestHumanoid.Parent)
+   end)
+local args = {
+    [1] = "RuthlessRoarHittt",
+    [2] = workspace:WaitForChild(closestHumanoid.Parent.Name),
+    [3] = 53475753578654310,
+    [4] = 55,
+    [5] = D3,
+    [6] = 1
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+playsound(150315649, closestHumanoid.RootPart)
+  task.wait(0.1)
+end
+ task.wait(0.5)
+   if closestHumanoid.Health <= 0 then return end
+local args = {
+  [1] = "TOPIMPORTANT_VFXEMITEER",
+  [2] = game.ReplicatedStorage.VFX.Sukuna.CravingCombaination.Hit,
+  [3] = closestHumanoid.RootPart.CFrame
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+
+local args = {
+    [1] = "RuthlessRoarHittt",
+    [2] = workspace:WaitForChild(closestHumanoid.Parent.Name),
+    [3] = 53475753578654310,
+    [4] = K2,
+    [5] = D4,
+    [6] = 1
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+playsound(264486467, closestHumanoid.RootPart)
+
+local args = {
+    [1] = "DownCut",
+    [2] = workspace:WaitForChild(closestHumanoid.Parent.Name),
+    [3] = 0.7166666388511658
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+    end)
+  else
+ task.wait(0.5)
+    pcall(function()
+game.Players.LocalPlayer:SetAttribute("NoHit", false)
+game.Players.LocalPlayer:SetAttribute("MSlowed", false)
+game.Players.LocalPlayer:SetAttribute("CanUsingTools", true)
+    end)
+end
+            end
+end)
+
+tool.Parent = game.Players.LocalPlayer.Backpack
+
+local tool = Instance.new("Tool")
+tool.Name = "Sword of Doomsday"
+tool.RequiresHandle = false
 
 tool.Activated:Connect(function()
 tool:Destroy()
