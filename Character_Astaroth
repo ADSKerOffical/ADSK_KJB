@@ -176,3 +176,148 @@ k:Stop()
 end)
 
 tool.Parent = game.Players.LocalPlayer.Backpack
+
+local tool = Instance.new("Tool")
+tool.Name = "Dark Energy Burst"
+tool.RequiresHandle = false
+
+local lastPressTime = 0
+tool.Activated:Connect(function()
+  local currentTime = tick()
+            if currentTime - lastPressTime >= 2 then
+                lastPressTime = currentTime 
+sound = Instance.new("Sound", game.Players.LocalPlayer.Character.HumanoidRootPart)
+sound.SoundId = "rbxassetid://181004943"
+sound.Volume = 2.5
+sound.PlaybackSpeed = 1
+sound.Looped = false
+sound:Play()
+
+local Anim = Instance.new("Animation")
+Anim.AnimationId = "rbxassetid://17850029289"
+local k = game:GetService("Players").LocalPlayer.Character.Humanoid:LoadAnimation(Anim)
+k:Play()
+k:AdjustSpeed(1)
+
+local ball = Instance.new("Part", workspace)
+ball.CanCollide = false
+ball.Size = Vector3.zero
+ball.Color = Color3.new(0, 0, 0)
+ball.Material = "Neon"
+ball.Shape = "Ball"
+
+local joint = Instance.new("Weld", ball)
+joint.Part0 = ball
+joint.Part1 = game.Players.LocalPlayer.Character:FindFirstChild("Right Arm")
+joint.C0 = CFrame.new(0, 2.6, 0)
+
+local partTweenn2 = game:GetService("TweenService"):Create(ball, TweenInfo.new(0.6, Enum.EasingStyle.Exponential), {
+        Size = Vector3.new(2, 2, 2)
+    })
+    partTweenn2:Play()
+  task.wait(0.8)
+joint:Destroy()
+ local shot = ball:Clone()
+ shot.Parent = workspace
+ game.Debris:AddItem(shot, 6)
+ball:Destroy()
+
+Spooky = Instance.new("Sound", game.Players.LocalPlayer.Character.HumanoidRootPart)
+Spooky.Name = "TBH_Execute"
+Spooky.SoundId = "rbxassetid://331888892"
+Spooky.Volume = 1
+Spooky.PlaybackSpeed = 1
+Spooky.Looped = false
+Spooky:Play()
+
+local ft = shot.Touched:Connect(function(hit)
+  if hit and hit.Parent ~= game.Players.LocalPlayer.Character then
+local shopo = shot.CFrame
+shot:Destroy()
+ shot.CanTouch = false
+ 
+ local expl = Instance.new("MeshPart", workspace)
+ expl.MeshId = "rbxassetid://5747850601"
+ expl.Material = "Neon"
+ expl.DoubleSided = true
+ expl.Anchored = true
+ expl.Color = Color3.new(1, 1, 1)
+ expl.CanCollide = false
+ expl.Size = Vector3.zero
+ expl.CanTouch = false
+ expl.Position = shopo.Position
+ game.Debris:AddItem(expl, 6)
+ 
+ local popa = Instance.new("Part", workspace)
+ popa.CanCollide = false
+ popa.CanTouch = false
+ popa.Size = Vector3.zero
+ popa.Color = Color3.new(1, 1, 1)
+ popa.Material = "Neon"
+ popa.Anchored = true
+ popa.Shape = "Ball"
+ popa.Position = shopo.Position
+ game.Debris:AddItem(popa, 3)
+ 
+sound = Instance.new("Sound", expl)
+sound.SoundId = "rbxassetid://4418405082"
+sound.Volume = 3.5
+sound.PlaybackSpeed = 1
+sound.Looped = false
+sound:Play()
+ 
+ local partTweenn2 = game:GetService("TweenService"):Create(expl, TweenInfo.new(0.85, Enum.EasingStyle.Exponential), {
+        Transparency = 1,
+        Size = Vector3.new(20, 20, 20),
+        Color = Color3.new(0, 0, 0)
+    })
+    partTweenn2:Play()
+local partTweenn2 = game:GetService("TweenService"):Create(popa, TweenInfo.new(0.85, Enum.EasingStyle.Exponential), {
+        Transparency = 1,
+        Size = Vector3.new(90, 90, 90),
+        Color = Color3.new(0, 0, 0)
+    })
+    partTweenn2:Play()
+    
+   local args = {
+    [1] = "MainModuleFUNCTIONN",
+    [2] = "DestrouctionSystem",
+    [3] = Vector3.new(150, 150, 150),
+    [4] = shopo.Position
+   }
+
+   game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+
+local foundHumanoids = {}
+Usuario = game.Players.LocalPlayer
+for _, v in pairs(workspace:GetDescendants()) do
+    if v:IsA("Humanoid") and v.RootPart and v.RootPart.Parent ~= Usuario.Character then
+        local distance = (v.RootPart.Position - shot.Position).magnitude
+        if distance <= 80 then
+            table.insert(foundHumanoids, v)
+        end
+    end
+end
+
+   for _, humanoid in pairs(foundHumanoids) do
+local args = {
+    [1] = "RuthlessRoarHittt",
+    [2] = workspace:WaitForChild(humanoid.Parent.Name),
+    [3] = 53475753578654310,
+    [4] = 200,
+    [5] = 90,
+    [6] = 0
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+    end
+  end
+end)
+
+local bv = Instance.new("BodyVelocity", shot)
+bv.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
+bv.Velocity = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame.LookVector * 600
+  end
+end)
+
+tool.Parent = game.Players.LocalPlayer.Backpack
