@@ -40,6 +40,52 @@ local partTweenn2 = game:GetService("TweenService"):Create(part, TweenInfo.new(0
   end
 end
 
+spawn(function()
+  repeat task.wait()
+local args = {
+    [1] = "DamgeHumanoidDDDDD",
+    [2] = game.Players.LocalPlayer.Character.Humanoid,
+    [3] = -10000
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+
+local args = {
+    [1] = "ChangeValue",
+    [2] = game:GetService("Players").LocalPlayer.Character.IsRagdoll,
+    [3] = false
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+
+local args = {
+    [1] = "ChangeAtribbe",
+    [2] = game.Players.LocalPlayer,
+    [3] = "Stun",
+    [4] = false
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+
+local args = {
+    [1] = "Force",
+    [2] = game.Players.LocalPlayer.Character.HumanoidRootPart,
+    [3] = Vector3.zero
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+
+local args = {
+    [1] = "ChangeAtribbe",
+    [2] = workspace:WaitForChild(game.Players.LocalPlayer.Name),
+    [3] = "CantHit",
+    [4] = true
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+  until game.Players.LocalPlayer.Character.Humanoid:GetState() == "Dead"
+end)
+
 local tool = Instance.new("Tool")
 tool.Name = "Triple spikes"
 tool.RequiresHandle = false
@@ -230,11 +276,13 @@ Spooky.PlaybackSpeed = 1
 Spooky.Looped = false
 Spooky:Play()
 
+local ted = true
 local ft = shot.Touched:Connect(function(hit)
   if hit and hit.Parent ~= game.Players.LocalPlayer.Character then
+    if ted == false then return end
+   ted = false
 local shopo = shot.CFrame
 shot:Destroy()
- shot.CanTouch = false
  
  local expl = Instance.new("MeshPart", workspace)
  expl.MeshId = "rbxassetid://5747850601"
@@ -304,8 +352,8 @@ local args = {
     [1] = "RuthlessRoarHittt",
     [2] = workspace:WaitForChild(humanoid.Parent.Name),
     [3] = 53475753578654310,
-    [4] = 200,
-    [5] = 90,
+    [4] = 245,
+    [5] = 125,
     [6] = 0
 }
 
@@ -484,6 +532,162 @@ for i = 1, shakeDuration do
  humanoid.CameraOffset = Vector3.new(0, 0, 0)
  end
 end)
+            end
+end)
+
+tool.Parent = game.Players.LocalPlayer.Backpack
+
+local tool = Instance.new("Tool")
+tool.Name = "Supernova"
+tool.ToolTip = "Gathers some of its pure energy and the energy can explode"
+tool.RequiresHandle = false
+
+local lastPressTime = 0
+tool.Activated:Connect(function()
+  local currentTime = tick()
+            if currentTime - lastPressTime >= 15 then
+                lastPressTime = currentTime 
+local Anim = Instance.new("Animation")
+Anim.AnimationId = "rbxassetid://17841379646"
+local k = game:GetService("Players").LocalPlayer.Character.Humanoid:LoadAnimation(Anim)
+k:Play()
+k:AdjustSpeed(0.6)
+
+sound = Instance.new("Sound", game.Workspace)
+sound.SoundId = "rbxassetid://103941300950586"
+sound.Volume = 2.5
+sound.PlaybackSpeed = 1
+sound.Looped = false
+sound:Play()
+
+sound = Instance.new("Sound", game.Workspace)
+sound.SoundId = "rbxassetid://86137199300573"
+sound.Volume = 3
+sound.PlaybackSpeed = 1
+sound.Looped = false
+sound:Play()
+
+for i = 1, 16 do
+local args = {
+    [1] = "TOPIMPORTANT_VFXEMITEER",
+    [2] = game:GetService("ReplicatedStorage"):WaitForChild("VFX"):WaitForChild("Madraa"):WaitForChild("FFullSusanoo"):WaitForChild("SlashHitRea2"),
+    [3] = game.Players.LocalPlayer.Character:FindFirstChild("Right Arm").CFrame * CFrame.new(0, 2, 0)
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+  task.wait(0.1)
+end
+
+for i = 1, 6 do
+local args = {
+    [1] = "WorldSlashSUPERCUT",
+    [2] = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.Angles(0, math.rad(i * 60), 0)
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+end
+
+local foundHumanoids = {}
+local foundNearest = {}
+local foundFurther = {}
+
+local Usuario = game.Players.LocalPlayer
+for _, v in pairs(workspace:GetDescendants()) do
+    if v:IsA("Humanoid") and v.RootPart and v.RootPart.Parent ~= Usuario.Character then
+        local distance = (v.RootPart.Position - Usuario.Character.HumanoidRootPart.Position).magnitude
+
+        if distance <= 15 then
+            table.insert(foundHumanoids, v)
+        elseif distance <= 60 then
+            table.insert(foundNearest, v)
+        elseif distance <= 120 then
+            table.insert(foundFurther, v)
+        end
+    end
+end
+
+for _, humanoid in pairs(foundHumanoids) do
+local args = {
+    [1] = "RuthlessRoarHittt",
+    [2] = workspace:WaitForChild(humanoid.Parent.Name),
+    [3] = 53475753578654310,
+    [4] = 920,
+    [5] = math.huge,
+    [6] = 0
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+end
+
+for _, humanoid in pairs(foundNearest) do
+local args = {
+    [1] = "RuthlessRoarHittt",
+    [2] = workspace:WaitForChild(humanoid.Parent.Name),
+    [3] = 53475753578654310,
+    [4] = 625,
+    [5] = 1.5735e6,
+    [6] = 0
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+end
+
+for _, humanoid in pairs(foundFurther) do
+local args = {
+    [1] = "RuthlessRoarHittt",
+    [2] = workspace:WaitForChild(humanoid.Parent.Name),
+    [3] = 53475753578654310,
+    [4] = 550,
+    [5] = 150,
+    [6] = 0
+}
+
+game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+end
+
+sound = Instance.new("Sound", game.Workspace)
+sound.SoundId = "rbxassetid://1617579644"
+sound.Volume = 1.5
+sound.PlaybackSpeed = 1
+sound.Looped = false
+sound:Play()
+
+local args = {
+    [1] = "MainModuleFUNCTIONN",
+    [2] = "DestrouctionSystem",
+    [3] = Vector3.new(400, 400, 400),
+    [4] = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+   }
+
+   game:GetService("ReplicatedStorage"):WaitForChild("AllRemoteEvents"):WaitForChild("CLientToServerR"):FireServer(unpack(args))
+
+spawn(function()
+local humanoid = game.Players.LocalPlayer.Character.Humanoid
+local originalOffset = humanoid.CameraOffset
+
+local startShakeIntensity = 20
+local shakeSpeed = 0.01
+local shakeDuration = 45
+
+for i = 1, shakeDuration do
+ task.wait()
+ local shakeIntensity = startShakeIntensity * (1 - (i-1)/shakeDuration)
+    local shakeOffset = Vector3.new(
+     math.random(-shakeIntensity, shakeIntensity) / 10,
+        math.random(-shakeIntensity, shakeIntensity) / 10,
+        math.random(-shakeIntensity, shakeIntensity) / 10
+ )
+ local originalOffset = humanoid.CameraOffset
+ local currentTime = 0
+ local duration = shakeSpeed
+ while currentTime < duration do
+     local delta = currentTime/duration
+     humanoid.CameraOffset = originalOffset + shakeOffset * (1 - delta)
+     currentTime = currentTime + task.wait(0.025)
+ end
+ humanoid.CameraOffset = Vector3.new(0, 0, 0)
+ end
+end) 
             end
 end)
 
