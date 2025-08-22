@@ -1645,7 +1645,7 @@ tool.Parent = game.Players.LocalPlayer.Backpack
    end    
 })
 
-local blacklist = {4568929932,7675789737,3540992706}
+local blacklist = {4568929932,7675789737,3540992706,7625013645}
 
 if table.find(blacklist, game.Players.LocalPlayer.CharacterAppearanceId) then
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Mobile%20Friendly%20Orion')))()
